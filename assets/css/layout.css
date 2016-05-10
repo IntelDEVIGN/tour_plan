@@ -1,0 +1,21 @@
+html, body, p {
+    font-family : 'Open Sans Condensed', 'Fira Sans', 'Segoe UI', 'sans-serif' !important;
+}
+
+#resultados, table {
+    font-size : smaller !important;
+}
+
+.btn, h2, h3 {
+    font-weight : 500 !important;
+}
+
+.ui-checkbox .ui-btn, .ui-radio .ui-btn {
+    padding-left  : 37px !important;
+    font-family   : 'Open Sans Condensed', 'Fira Sans', 'Segoe UI', 'sans-serif' !important;
+    border-radius : .25em !important;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+    margin-left : 0;
+}
