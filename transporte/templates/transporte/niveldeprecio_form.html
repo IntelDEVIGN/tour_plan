@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_cotizacion_detalle_list' %}">Cotizacion_Detalle Listing</a></p>
+<p><a class="btn btn-default" href="{% url 'transporte_niveldeprecio_list' %}">Nivel_De_Precio Listing</a></p>
 <form method="post">
 {% csrf_token %}
 {{form|crispy}}

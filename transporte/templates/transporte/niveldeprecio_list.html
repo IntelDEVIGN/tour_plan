@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_tipo_item_list' %}">Tipo_Item Listing</a></p>
+<p><a class="btn btn-default" href="{% url 'transporte_niveldeprecio_list' %}">Nivel_De_Precio Listing</a></p>
 <table class="table">
 <tr>
 <td>ID</td><td>Link</td>
@@ -9,6 +9,9 @@
     <td>slug</td>
     <td>creado</td>
     <td>actualizado</td>
+    <td>tipo</td>
+    <td>accion</td>
+    <td>valor</td>
 </tr>
 {% for object in object_list %}
 <tr>
@@ -18,7 +21,10 @@
     <td>{{ object.slug }}</td>
     <td>{{ object.creado }}</td>
     <td>{{ object.actualizado }}</td>
+    <td>{{ object.tipo }}</td>
+    <td>{{ object.accion }}</td>
+    <td>{{ object.valor }}</td>
 </tr>
 {% endfor %}
-</table><a class="btn btn-primary" href="{% url 'transporte_tipo_item_create' %}">Create new Tipo_Item</a>
+</table><a class="btn btn-primary" href="{% url 'transporte_niveldeprecio_create' %}">Create new Nivel_De_Precio</a>
 {% endblock %}
