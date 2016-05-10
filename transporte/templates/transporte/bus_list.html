@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'transporte_bus_list' %}">Bus Listing</a></p>
+<table class="table">
+<tr>
+<td>ID</td><td>Link</td>
+    <td>nombre</td>
+    <td>creado</td>
+    <td>actualizado</td>
+    <td>rendimiento</td>
+    <td>costo_por_dia</td>
+    <td>costo_por_km</td>
+    <td>capacidad_nominal</td>
+    <td>capacidad_real</td>
+    <td>chofer_fijo</td>
+    <td>slug</td>
+</tr>
+{% for object in object_list %}
+<tr>
+    <td>{{object.id}}</td>
+    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+    <td>{{ object.nombre }}</td>
+    <td>{{ object.creado }}</td>
+    <td>{{ object.actualizado }}</td>
+    <td>{{ object.rendimiento }}</td>
+    <td>{{ object.costo_por_dia }}</td>
+    <td>{{ object.costo_por_km }}</td>
+    <td>{{ object.capacidad_nominal }}</td>
+    <td>{{ object.capacidad_real }}</td>
+    <td>{{ object.chofer_fijo }}</td>
+    <td>{{ object.slug }}</td>
+</tr>
+{% endfor %}
+</table><a class="btn btn-primary" href="{% url 'transporte_bus_create' %}">Create new Bus</a>
+{% endblock %}

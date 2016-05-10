@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'transporte_bus_list' %}">Bus Listing</a></p>
+<table class="table">
+<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
+<tr><td>creado</td><td>{{ object.creado }}</td></tr>
+<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
+<tr><td>rendimiento</td><td>{{ object.rendimiento }}</td></tr>
+<tr><td>costo_por_dia</td><td>{{ object.costo_por_dia }}</td></tr>
+<tr><td>costo_por_km</td><td>{{ object.costo_por_km }}</td></tr>
+<tr><td>capacidad_nominal</td><td>{{ object.capacidad_nominal }}</td></tr>
+<tr><td>capacidad_real</td><td>{{ object.capacidad_real }}</td></tr>
+<tr><td>chofer_fijo</td><td>{{ object.chofer_fijo }}</td></tr>
+<tr><td>slug</td><td>{{ object.slug }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Bus</a>
+
+{% endblock %}

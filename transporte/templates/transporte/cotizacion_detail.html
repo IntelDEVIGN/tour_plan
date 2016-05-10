@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'transporte_cotizacion_list' %}">Cotizacion Listing</a></p>
+<table class="table">
+<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
+<tr><td>slug</td><td>{{ object.slug }}</td></tr>
+<tr><td>creado</td><td>{{ object.creado }}</td></tr>
+<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
+<tr><td>fecha_vence</td><td>{{ object.fecha_vence }}</td></tr>
+<tr><td>subtotal</td><td>{{ object.subtotal }}</td></tr>
+<tr><td>markup</td><td>{{ object.markup }}</td></tr>
+<tr><td>total</td><td>{{ object.total }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Cotizacion</a>
+
+{% endblock %}
