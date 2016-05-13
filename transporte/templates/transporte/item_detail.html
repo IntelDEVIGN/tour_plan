@@ -1,18 +1,52 @@
 {% extends "base.html" %}
-{% load static %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% block title %}Bus Detail{% endblock %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_item_list' %}">Item Listing</a></p>
-<table class="table">
-<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
-<tr><td>slug</td><td>{{ object.slug }}</td></tr>
-<tr><td>creado</td><td>{{ object.creado }}</td></tr>
-<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
-<tr><td>unidad</td><td>{{ object.unidad }}</td></tr>
-<tr><td>costo</td><td>{{ object.costo }}</td></tr>
-<tr><td>precio</td><td>{{ object.precio }}</td></tr>
-<tr><td>descripcion_compra</td><td>{{ object.descripcion_compra }}</td></tr>
-<tr><td>descripcion_venta</td><td>{{ object.descripcion_venta }}</td></tr>
-</table>
-<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Item</a>
-
+    <div class="table-responsive">
+        <table class="table table-responsive table-stripped table-condensed">
+            <thead>
+            <th class="derecha">Item</th>
+            <th>{{ item.nombre }}</th>
+            </thead>
+            <tr>
+                <td class="derecha">Tipo Item</td>
+                <td><strong>{{ item.get_tipo_item_display }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Unidad</td>
+                <td><strong>{{ item.unidad }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Costo</td>
+                <td><strong>{{ item.costo }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Precio</td>
+                <td><strong>{{ item.precio }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Descripción Compra</td>
+                <td><strong>{{ item.descripcion_compra }}</td>
+            </tr>
+            <tr>
+                <td class="derecha">Descripción Venta</td>
+                <td><strong>{{ item.descripcion_venta }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Slug</td>
+                <td><strong>{{ item.slug }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Creado</td>
+                <td><strong>{{ item.creado }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Actualizado</td>
+                <td><strong>{{ item.actualizado }}</strong></td>
+            </tr>
+        </table>
+    </div>
+    <a href="{{ item.get_update_url }}" class="ui-btn-active ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+        Item</a>
 {% endblock %}

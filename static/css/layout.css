@@ -21,10 +21,36 @@ html, body, p {
 }
 
 thead {
-    background-color: #38c;
-    border-color: #38c;
-    color: #fff;
-    text-shadow: 0 1px 0 #059;
-    font-size: large;
+    background-color : #38c;
+    border-color     : #38c;
+    color            : #fff;
+    text-shadow      : 0 1px 0 #059;
+    font-size        : large;
+}
+
+td.centrado, th.centrado {
+    text-align     : center;
+    vertical-align : middle !important;
+}
+
+td.derecha, th.derecha {
+    text-align     : right;
+    vertical-align : middle !important;
+}
+
+td.izquierda, th.izquierda {
+    text-align     : left;
+    vertical-align : middle !important;
+}
+
+td a.boton {
+    margin      : 0 !important;
+    font-family : 'Open Sans Condensed', sans-serif !important;
+    font-size   : 14px !important;
+}
+
+.ui-btn {
+    font-size   : 14px !important;
+    font-family : 'Open Sans Condensed', sans-serif !important;
 }
 

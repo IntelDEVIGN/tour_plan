@@ -1,16 +1,45 @@
 {% extends "base.html" %}
-{% load static %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% load porcentaje %}
+{% block title %}Detalle de Nivel de Precio{% endblock %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_niveldeprecio_list' %}">Nivel_De_Precio Listing</a></p>
-<table class="table">
-<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
-<tr><td>slug</td><td>{{ object.slug }}</td></tr>
-<tr><td>creado</td><td>{{ object.creado }}</td></tr>
-<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
-<tr><td>tipo</td><td>{{ object.tipo }}</td></tr>
-<tr><td>accion</td><td>{{ object.accion }}</td></tr>
-<tr><td>valor</td><td>{{ object.valor }}</td></tr>
-</table>
-<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Nivel_De_Precio</a>
-
+    <div class="table-responsive">
+        <table class="table table-responsive table-stripped table-condensed">
+            <thead>
+            <th class="derecha">Nivel de Precio</th>
+            <th>{{ niveldeprecio.nombre }}</th>
+            </thead>
+            <tr>
+                <td class="derecha">Tipo</td>
+                <td><strong>{{ niveldeprecio.get_tipo_display }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Acción</td>
+                <td><strong>{{ niveldeprecio.get_accion_display }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Valor</td>
+                {% if niveldeprecio.tipo == "FI" %}
+                    <td><strong>En un {{ niveldeprecio.valor|porciento }}</strong></td>
+                {% else %}
+                    <td><strong>En {{ niveldeprecio.valor }} Lps.</strong></td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td class="derecha">Factor</td>
+                <td><strong>{{ niveldeprecio.factor|floatformat:6 }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Creado</td>
+                <td><strong>{{ niveldeprecio.creado|date }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Actualizado</td>
+                <td><strong>{{ niveldeprecio.actualizado|date }}</strong></td>
+            </tr>
+        </table>
+    </div>
+    <a href="{{ niveldeprecio.get_update_url }}" class="ui-btn-active ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+        Nivel de Precio</a>
 {% endblock %}

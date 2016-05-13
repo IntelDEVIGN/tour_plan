@@ -1,13 +1,42 @@
 {% extends "base.html" %}
-{% load static %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% block title %}Cliente{% endblock %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_cliente_list' %}">Cliente Listing</a></p>
-<table class="table">
-<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
-<tr><td>slug</td><td>{{ object.slug }}</td></tr>
-<tr><td>creado</td><td>{{ object.creado }}</td></tr>
-<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
-</table>
-<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Cliente</a>
-
+    <div class="table-responsive">
+        <table class="table table-responsive table-stripped table-condensed">
+            <thead>
+            <th class="derecha">Cliente</th>
+            <th>{{ cliente.nombre }}</th>
+            </thead>
+            <tr>
+                <td class="derecha">Contacto</td>
+                <td><strong>{{ cliente.contacto }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Tel</td>
+                <td><a href="tel:{{ cliente.tel }}"
+                       class="ui-btn-active ui-link ui-btn ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a></td>
+            </tr>
+            <tr>
+                <td class="derecha">Email</td>
+                <td><a href="mailto:{{ cliente.email }}"
+                       class="ui-btn-active ui-link ui-btn ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a></td>
+            </tr>
+            <tr>
+                <td class="derecha">Nivel de Precio</td>
+                <td><strong>{{ cliente.cliente_niveldeprecio }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Creado</td>
+                <td><strong>{{ cliente.creado|date }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Actualizado</td>
+                <td><strong>{{ cliente.actualizado|date }}</strong></td>
+            </tr>
+        </table>
+    </div>
+    <a href="{{ cliente.get_update_url }}" class="ui-btn-active ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+        Cliente</a>
 {% endblock %}

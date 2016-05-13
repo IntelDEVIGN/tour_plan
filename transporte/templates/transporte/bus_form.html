@@ -1,11 +1,15 @@
 {% extends "base.html" %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% load bootstrap3 %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_bus_list' %}">Bus Listing</a></p>
-<form method="post">
-{% csrf_token %}
-{{form|crispy}}
-<button class="btn btn-primary" type="submit">Submit</button>
-</form>
+    <div style="padding: 4px">
+        <form method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button class="ui-btn-active ui-link ui-btn ui-icon-check ui-btn-icon-left"
+                        type="submit">Guardar Vehículo
+                </button>
+            {% endbuttons %}
+        </form>
+    </div>
 {% endblock %}

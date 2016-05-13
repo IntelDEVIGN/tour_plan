@@ -1,11 +1,14 @@
 from django import forms
-from .models import Bus, Parametro, Item, Tipo_Item, Nivel_De_Precio, Cotizacion, Cliente, Itinerario, Cotizacion_Detalle
+
+from .models import Bus, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
+    CotizacionDetalle
 
 
 class BusForm(forms.ModelForm):
     class Meta:
         model = Bus
-        fields = ['nombre', 'rendimiento', 'costo_por_dia', 'costo_por_km', 'capacidad_nominal', 'capacidad_real', 'chofer_fijo']
+        fields = ['nombre', 'rendimiento', 'costo_por_dia', 'costo_por_km', 'capacidad_nominal', 'capacidad_real',
+                  'activo', 'chofer_fijo']
 
 
 class ParametroForm(forms.ModelForm):
@@ -20,16 +23,10 @@ class ItemForm(forms.ModelForm):
         fields = ['nombre', 'unidad', 'costo', 'precio', 'descripcion_compra', 'descripcion_venta', 'tipo_item']
 
 
-class Tipo_ItemForm(forms.ModelForm):
+class NivelDePrecioForm(forms.ModelForm):
     class Meta:
-        model = Tipo_Item
-        fields = ['nombre']
-
-
-class Nivel_De_PrecioForm(forms.ModelForm):
-    class Meta:
-        model = Nivel_De_Precio
-        fields = ['nombre', 'tipo', 'accion', 'valor']
+        model = NivelDePrecio
+        fields = ['nombre', 'tipo', 'accion', 'valor', '_factor']
 
 
 class CotizacionForm(forms.ModelForm):
@@ -41,7 +38,7 @@ class CotizacionForm(forms.ModelForm):
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
-        fields = ['nombre', 'cliente_nivel_de_precio']
+        fields = ['nombre', 'contacto', 'email', 'tel', 'cliente_niveldeprecio']
 
 
 class ItinerarioForm(forms.ModelForm):
@@ -50,9 +47,7 @@ class ItinerarioForm(forms.ModelForm):
         fields = ['nombre', 'fecha_desde', 'fecha_hasta', 'estatus', 'itinerario_cliente']
 
 
-class Cotizacion_DetalleForm(forms.ModelForm):
+class CotizacionDetalleForm(forms.ModelForm):
     class Meta:
-        model = Cotizacion_Detalle
-        fields = ['descripcion', 'cantidad', 'markup', 'precio', 'monto', 'total', 'detalle_cotizacion', 'detalle_item']
-
-
+        model = CotizacionDetalle
+        fields = ['descripcion', 'cantidad', 'markup', 'precio', 'detalle_cotizacion', 'detalle_item']

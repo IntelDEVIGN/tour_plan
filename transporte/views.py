@@ -1,6 +1,25 @@
+from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
-from .models import Bus, Parametro, Item, Tipo_Item, Nivel_De_Precio, Cotizacion, Cliente, Itinerario, Cotizacion_Detalle
-from .forms import BusForm, ParametroForm, ItemForm, Tipo_ItemForm, Nivel_De_PrecioForm, CotizacionForm, ClienteForm, ItinerarioForm, Cotizacion_DetalleForm
+
+from .forms import BusForm, ParametroForm, ItemForm, NivelDePrecioForm, CotizacionForm, ClienteForm, \
+    ItinerarioForm, CotizacionDetalleForm
+from .models import Bus, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
+    CotizacionDetalle
+
+
+def indice(request):
+    """
+    :param request:
+    :return: Listado de Buses
+    """
+
+    buses = Bus.objects.all()
+
+    context = {
+        'buses': buses,
+    }
+
+    return render(request, "index.html", context)
 
 
 class BusListView(ListView):
@@ -57,40 +76,22 @@ class ItemUpdateView(UpdateView):
     form_class = ItemForm
 
 
-class Tipo_ItemListView(ListView):
-    model = Tipo_Item
+class NivelDePrecioListView(ListView):
+    model = NivelDePrecio
 
 
-class Tipo_ItemCreateView(CreateView):
-    model = Tipo_Item
-    form_class = Tipo_ItemForm
+class NivelDePrecioCreateView(CreateView):
+    model = NivelDePrecio
+    form_class = NivelDePrecioForm
 
 
-class Tipo_ItemDetailView(DetailView):
-    model = Tipo_Item
+class NivelDePrecioDetailView(DetailView):
+    model = NivelDePrecio
 
 
-class Tipo_ItemUpdateView(UpdateView):
-    model = Tipo_Item
-    form_class = Tipo_ItemForm
-
-
-class Nivel_De_PrecioListView(ListView):
-    model = Nivel_De_Precio
-
-
-class Nivel_De_PrecioCreateView(CreateView):
-    model = Nivel_De_Precio
-    form_class = Nivel_De_PrecioForm
-
-
-class Nivel_De_PrecioDetailView(DetailView):
-    model = Nivel_De_Precio
-
-
-class Nivel_De_PrecioUpdateView(UpdateView):
-    model = Nivel_De_Precio
-    form_class = Nivel_De_PrecioForm
+class NivelDePrecioUpdateView(UpdateView):
+    model = NivelDePrecio
+    form_class = NivelDePrecioForm
 
 
 class CotizacionListView(ListView):
@@ -147,20 +148,19 @@ class ItinerarioUpdateView(UpdateView):
     form_class = ItinerarioForm
 
 
-class Cotizacion_DetalleListView(ListView):
-    model = Cotizacion_Detalle
+class CotizacionDetalleListView(ListView):
+    model = CotizacionDetalle
 
 
-class Cotizacion_DetalleCreateView(CreateView):
-    model = Cotizacion_Detalle
-    form_class = Cotizacion_DetalleForm
+class CotizacionDetalleCreateView(CreateView):
+    model = CotizacionDetalle
+    form_class = CotizacionDetalleForm
 
 
-class Cotizacion_DetalleDetailView(DetailView):
-    model = Cotizacion_Detalle
+class CotizacionDetalleDetailView(DetailView):
+    model = CotizacionDetalle
 
 
-class Cotizacion_DetalleUpdateView(UpdateView):
-    model = Cotizacion_Detalle
-    form_class = Cotizacion_DetalleForm
-
+class CotizacionDetalleUpdateView(UpdateView):
+    model = CotizacionDetalle
+    form_class = CotizacionDetalleForm

@@ -1,6 +1,7 @@
-import models
-import serializers
 from rest_framework import viewsets, permissions
+
+from . import models
+from . import serializers
 
 
 class BusViewSet(viewsets.ModelViewSet):
@@ -27,19 +28,11 @@ class ItemViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class Tipo_ItemViewSet(viewsets.ModelViewSet):
-    """ViewSet for the Tipo_Item class"""
+class NivelDePrecioViewSet(viewsets.ModelViewSet):
+    """ViewSet for the NivelDePrecio class"""
 
-    queryset = models.Tipo_Item.objects.all()
-    serializer_class = serializers.Tipo_ItemSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class Nivel_De_PrecioViewSet(viewsets.ModelViewSet):
-    """ViewSet for the Nivel_De_Precio class"""
-
-    queryset = models.Nivel_De_Precio.objects.all()
-    serializer_class = serializers.Nivel_De_PrecioSerializer
+    queryset = models.NivelDePrecio.objects.all()
+    serializer_class = serializers.NivelDePrecioSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
@@ -67,11 +60,11 @@ class ItinerarioViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class Cotizacion_DetalleViewSet(viewsets.ModelViewSet):
-    """ViewSet for the Cotizacion_Detalle class"""
+class CotizacionDetalleViewSet(viewsets.ModelViewSet):
+    """ViewSet for the CotizacionDetalle class"""
 
-    queryset = models.Cotizacion_Detalle.objects.all()
-    serializer_class = serializers.Cotizacion_DetalleSerializer
+    queryset = models.CotizacionDetalle.objects.all()
+    serializer_class = serializers.CotizacionDetalleSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 

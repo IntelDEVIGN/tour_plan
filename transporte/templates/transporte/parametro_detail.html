@@ -1,16 +1,36 @@
 {% extends "base.html" %}
-{% load static %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% block title %}Detalle de Parámetro{% endblock %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_parametro_list' %}">Parametro Listing</a></p>
-<table class="table">
-<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
-<tr><td>valor</td><td>{{ object.valor }}</td></tr>
-<tr><td>unidad</td><td>{{ object.unidad }}</td></tr>
-<tr><td>orden</td><td>{{ object.orden }}</td></tr>
-<tr><td>creado</td><td>{{ object.creado }}</td></tr>
-<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
-<tr><td>slug</td><td>{{ object.slug }}</td></tr>
-</table>
-<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Parametro</a>
-
+    <div class="table-responsive">
+        <table class="table table-responsive table-stripped table-condensed">
+            <thead>
+            <th class="derecha">Parametro</th>
+            <th>{{ parametro.nombre }}</th>
+            </thead>
+            <tr>
+                <td class="derecha">Valor</td>
+                <td><strong>{{ parametro.valor }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Unidad</td>
+                <td><strong>{{ parametro.unidad }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Orden</td>
+                <td><strong>{{ parametro.orden }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Creado</td>
+                <td><strong>{{ parametro.creado|date }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Actualizado</td>
+                <td><strong>{{ parametro.ultima_actualizacion|date }}</strong></td>
+            </tr>
+        </table>
+    </div>
+    <a href="{{ parametro.get_update_url }}" class="ui-btn-active ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+        Parámetro</a>
 {% endblock %}

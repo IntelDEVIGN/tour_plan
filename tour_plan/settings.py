@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'debug_toolbar',
+    'djchoices',
+    'bootstrap3',
+    'crispy_forms',
     'transporte',
 ]
 
@@ -55,11 +58,11 @@ ROOT_URLCONF = 'tour_plan.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'BACKEND':  'django.template.backends.django.DjangoTemplates',
+        'DIRS':     [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
-        'OPTIONS': {
+        'OPTIONS':  {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -72,17 +75,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tour_plan.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'tour_plan.db'),
+        'NAME':   os.path.join(BASE_DIR, 'tour_plan.db'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -102,13 +103,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-MX'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Tegucigalpa'
 
 USE_I18N = True
 
@@ -116,8 +116,23 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'assets'),
+]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+LOGIN_REDIRECT_URL = '/'

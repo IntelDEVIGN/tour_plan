@@ -1,34 +1,35 @@
 {% extends "base.html" %}
+{% load humanize %}
+{% load bootstrap3 %}
 {% load static %}
+{% block title %}Items{% endblock %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_item_list' %}">Item Listing</a></p>
-<table class="table">
-<tr>
-<td>ID</td><td>Link</td>
-    <td>nombre</td>
-    <td>slug</td>
-    <td>creado</td>
-    <td>actualizado</td>
-    <td>unidad</td>
-    <td>costo</td>
-    <td>precio</td>
-    <td>descripcion_compra</td>
-    <td>descripcion_venta</td>
-</tr>
-{% for object in object_list %}
-<tr>
-    <td>{{object.id}}</td>
-    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
-    <td>{{ object.nombre }}</td>
-    <td>{{ object.slug }}</td>
-    <td>{{ object.creado }}</td>
-    <td>{{ object.actualizado }}</td>
-    <td>{{ object.unidad }}</td>
-    <td>{{ object.costo }}</td>
-    <td>{{ object.precio }}</td>
-    <td>{{ object.descripcion_compra }}</td>
-    <td>{{ object.descripcion_venta }}</td>
-</tr>
-{% endfor %}
-</table><a class="btn btn-primary" href="{% url 'transporte_item_create' %}">Create new Item</a>
+    {#    <script type="application/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>#}
+    <div class="form-group">
+        <form class="form">
+            <table id="table-bus" class="table ui-shadow table-stripe table-responsive">
+                <thead>
+                <tr>
+                    <th class="center">Item</th>
+                    <th class="derecha">Costo</th>
+                    <th class="derecha">Precio</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in item_list %}
+                    <tr>
+                        <td data-search="{{ item.nombre }}"><a class="ui-btn ui-link"
+                                                               style="margin:0 !important; font-family:'Open Sans Condensed' !important;font-size: 14px !important;"
+                                                               href="{{ item.get_absolute_url }}">{{ item.nombre }}</a>
+                        </td>
+                        <td class="derecha">{{ item.costo|intcomma }}</td>
+                        <td class="derecha">{{ item.precio|intcomma }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a class="ui-btn-active ui-link ui-btn ui-icon-plus ui-btn-icon-left"
+               href="{% url "transporte_item_create" %}">Agregar Nuevo Item</a>
+        </form>
+    </div>
 {% endblock %}

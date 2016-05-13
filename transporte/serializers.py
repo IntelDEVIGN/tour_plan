@@ -1,6 +1,6 @@
-import models
-
 from rest_framework import serializers
+
+from . import models
 
 
 class BusSerializer(serializers.ModelSerializer):
@@ -41,8 +41,9 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Item
         fields = (
-            'slug', 
-            'nombre', 
+            'slug',
+            'nombre',
+            'tipo_item',
             'creado', 
             'actualizado', 
             'unidad', 
@@ -53,22 +54,10 @@ class ItemSerializer(serializers.ModelSerializer):
         )
 
 
-class Tipo_ItemSerializer(serializers.ModelSerializer):
+class NivelDePrecioSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Tipo_Item
-        fields = (
-            'slug', 
-            'nombre', 
-            'creado', 
-            'actualizado', 
-        )
-
-
-class Nivel_De_PrecioSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.Nivel_De_Precio
+        model = models.NivelDePrecio
         fields = (
             'slug', 
             'nombre', 
@@ -101,8 +90,10 @@ class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Cliente
         fields = (
-            'slug', 
-            'nombre', 
+            'slug',
+            'nombre',
+            'email',
+            'tel',
             'creado', 
             'actualizado', 
         )
@@ -123,10 +114,10 @@ class ItinerarioSerializer(serializers.ModelSerializer):
         )
 
 
-class Cotizacion_DetalleSerializer(serializers.ModelSerializer):
+class CotizacionDetalleSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Cotizacion_Detalle
+        model = models.CotizacionDetalle
         fields = (
             'slug', 
             'descripcion', 

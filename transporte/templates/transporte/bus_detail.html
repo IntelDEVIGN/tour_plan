@@ -1,19 +1,52 @@
 {% extends "base.html" %}
-{% load static %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% block title %}Bus{% endblock %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_bus_list' %}">Bus Listing</a></p>
-<table class="table">
-<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
-<tr><td>creado</td><td>{{ object.creado }}</td></tr>
-<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
-<tr><td>rendimiento</td><td>{{ object.rendimiento }}</td></tr>
-<tr><td>costo_por_dia</td><td>{{ object.costo_por_dia }}</td></tr>
-<tr><td>costo_por_km</td><td>{{ object.costo_por_km }}</td></tr>
-<tr><td>capacidad_nominal</td><td>{{ object.capacidad_nominal }}</td></tr>
-<tr><td>capacidad_real</td><td>{{ object.capacidad_real }}</td></tr>
-<tr><td>chofer_fijo</td><td>{{ object.chofer_fijo }}</td></tr>
-<tr><td>slug</td><td>{{ object.slug }}</td></tr>
-</table>
-<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Bus</a>
-
+    <div class="table-responsive">
+        <table class="table table-responsive table-stripped table-condensed">
+            <thead>
+            <th class="derecha">Vehículo</th>
+            <th>{{ bus.nombre }}</th>
+            </thead>
+            <tr>
+                <td class="derecha">Rendimiento</td>
+                <td><strong>{{ bus.rendimiento }} Kms/Gal</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Costo/Dia</td>
+                <td><strong>Lps. {{ bus.costo_por_dia|intcomma }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Costo/Km</td>
+                <td><strong>Lps. {{ bus.costo_por_km }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Asientos</td>
+                <td><strong>{{ bus.capacidad_nominal }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Capacidad</td>
+                <td><strong>{{ bus.capacidad_real }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Chofer Fijo?</td>
+                <td><strong>{{ bus.chofer_fijo|yesno }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Activo?</td>
+                <td><strong>{{ bus.activo|yesno }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Creado</td>
+                <td><strong>{{ bus.creado|date }}</strong></td>
+            </tr>
+            <tr>
+                <td class="derecha">Actualizado</td>
+                <td><strong>{{ bus.actualizado|date }}</strong></td>
+            </tr>
+        </table>
+    </div>
+    <a href="{{ bus.get_update_url }}" class="ui-btn-active ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+        Vehículo</a>
 {% endblock %}

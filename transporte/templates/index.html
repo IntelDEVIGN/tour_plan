@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <p>Hola {{ request.user.username|title }}, ingresaste por última vez
+            hace {{ request.user.last_login|timesince }}</p>
+    {% else %}
+        <p>Bienvenido Invitado!</p>
+    {% endif %}
+    <main>
+        <h1>{{ buses.count }} bus(es)</h1>
+        {% for bus in buses %}
+            <h2>{{ bus.nombre }}</h2>
+            {{ bus.costo_por_dia }}
+        {% endfor %}
+    </main>
+{% endblock %}

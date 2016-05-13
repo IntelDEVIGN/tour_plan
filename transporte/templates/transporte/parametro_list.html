@@ -1,30 +1,40 @@
 {% extends "base.html" %}
-{% load static %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% block title %}Parametros{% endblock %}
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_parametro_list' %}">Parametro Listing</a></p>
-<table class="table">
-<tr>
-<td>ID</td><td>Link</td>
-    <td>nombre</td>
-    <td>valor</td>
-    <td>unidad</td>
-    <td>orden</td>
-    <td>creado</td>
-    <td>actualizado</td>
-    <td>slug</td>
-</tr>
-{% for object in object_list %}
-<tr>
-    <td>{{object.id}}</td>
-    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
-    <td>{{ object.nombre }}</td>
-    <td>{{ object.valor }}</td>
-    <td>{{ object.unidad }}</td>
-    <td>{{ object.orden }}</td>
-    <td>{{ object.creado }}</td>
-    <td>{{ object.actualizado }}</td>
-    <td>{{ object.slug }}</td>
-</tr>
-{% endfor %}
-</table><a class="btn btn-primary" href="{% url 'transporte_parametro_create' %}">Create new Parametro</a>
+    {#    <script type="application/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>#}
+    <div class="form-group" style="padding: 6px">
+        <form class="form">
+            <div class="table-responsive">
+                <table id="table-parametro" class="table ui-shadow table-stripe table-responsive">
+                    <thead>
+                    <tr>
+                        <th class="center">Parámetro</th>
+                        <th class="derecha">Valor</th>
+                        <th style="text-align: left">Unidad</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for parametro in object_list %}
+                        <tr>
+                            <td data-search="{{ parametro.nombre }}"><a class="ui-btn ui-link boton"
+                                                                        href="{{ parametro.get_absolute_url }}">{{ parametro.nombre }}</a>
+                            </td>
+                            <td class="derecha">{{ parametro.valor }}</td>
+                            <td style="text-align: left; vertical-align: middle;">{{ parametro.unidad }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a class="ui-btn-active ui-link ui-btn ui-icon-plus ui-btn-icon-left"
+               href="{% url "transporte_parametro_create" %}">Agregar Nuevo Parámetro</a>
+        </form>
+    </div>
+    {#    <script type="application/javascript">#}
+    {#        $(document).ready(function () {#}
+    {#            $('#resultados').DataTable();#}
+    {#        });#}
+    {#    </script>#}
 {% endblock %}
