@@ -3,10 +3,16 @@
 {% load bootstrap3 %}
 {% block title %}Detalle de Parámetro{% endblock %}
 {% block content %}
-    <div class="table-responsive">
-        <table class="table table-responsive table-stripped table-condensed">
+    <style>
+        body > div.site-container.ui-page.ui-page-theme-a.ui-page-active > div.ui-content > div > a {
+            display : none !important;
+        }
+    </style>
+    <div style="width: 100%">
+        <table data-role="table" id="table-parametro" data-mode="columntoggle"
+               class="ui-table ui-shadow table-stripe  ui-responsive">
             <thead>
-            <th class="derecha">Parametro</th>
+            <th class="derecha">Parámetro</th>
             <th>{{ parametro.nombre }}</th>
             </thead>
             <tr>

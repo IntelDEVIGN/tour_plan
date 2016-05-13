@@ -4,11 +4,17 @@
 {% load porcentaje %}
 {% block title %}Detalle de Nivel de Precio{% endblock %}
 {% block content %}
-    <div class="table-responsive">
-        <table class="table table-responsive table-stripped table-condensed">
+    <style>
+        body > div.site-container.ui-page.ui-page-theme-a.ui-page-active > div.ui-content > div > a {
+            display : none !important;
+        }
+    </style>
+    <div style="width: 100%">
+        <table data-role="table" id="table-parametro" data-mode="columntoggle"
+               class="ui-table ui-shadow table-stripe  ui-responsive">
             <thead>
             <th class="derecha">Nivel de Precio</th>
-            <th>{{ niveldeprecio.nombre }}</th>
+            <th class="izquierda">{{ niveldeprecio.nombre }}</th>
             </thead>
             <tr>
                 <td class="derecha">Tipo</td>

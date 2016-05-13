@@ -3,11 +3,11 @@
 {% load bootstrap3 %}
 {% block title %}Cliente{% endblock %}
 {% block content %}
-    <div class="table-responsive">
-        <table class="table table-responsive table-stripped table-condensed">
+    <div style="width: 100%">
+        <table style="width: 100%; border: 1px solid #ccc" class="table ui-responsive table-stripped">
             <thead>
             <th class="derecha">Cliente</th>
-            <th>{{ cliente.nombre }}</th>
+            <th class="izquierda">{{ cliente.nombre }}</th>
             </thead>
             <tr>
                 <td class="derecha">Contacto</td>
