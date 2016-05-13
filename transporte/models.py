@@ -70,18 +70,19 @@ class Parametro(models.Model):
 class Item(models.Model):
     # Choices
     class TipoItem(DjangoChoices):
-        Insumo = ChoiceItem("INS")
-        Servicio = ChoiceItem("SER")
-        Subcontratado = ChoiceItem("SUB")
-        Cargo = ChoiceItem("CAR")
-        Descuento = ChoiceItem("DES")
-        Impuesto = ChoiceItem("IMP")
-        Grupo = ChoiceItem("GRU")
+        Insumo = ChoiceItem("Insumo")
+        Servicio = ChoiceItem("Servicio")
+        Subcontratado = ChoiceItem("Subcontratado")
+        Cargo = ChoiceItem("Cargo")
+        Descuento = ChoiceItem("Descuento")
+        Impuesto = ChoiceItem("Impuesto")
+        Grupo = ChoiceItem("Grupo")
 
     # Fields
     nombre = models.CharField(max_length=100)
     slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
-    tipo_item = models.CharField(max_length=3, choices=TipoItem.choices, validators=[TipoItem.validator], default='SER')
+    tipo_item = models.CharField(max_length=13, choices=TipoItem.choices, validators=[TipoItem.validator],
+                                 default=TipoItem.Servicio)
     unidad = models.CharField(max_length=50)
     costo = models.DecimalField(max_digits=10, decimal_places=2)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
@@ -111,18 +112,18 @@ class Item(models.Model):
 class NivelDePrecio(models.Model):
     # Choices
     class Tipo(DjangoChoices):
-        Porcentaje = ChoiceItem("FI")
-        Valor = ChoiceItem("VA")
+        Porcentaje = ChoiceItem("Porcentaje")
+        Valor = ChoiceItem("Valor")
 
     class Accion(DjangoChoices):
-        Incrementa = ChoiceItem("INC")
-        Decrementa = ChoiceItem("DEC")
+        Incrementa = ChoiceItem("Incrementa")
+        Decrementa = ChoiceItem("Decrementa")
 
     # Fields
     nombre = models.CharField(max_length=50)
     slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
-    tipo = models.CharField(max_length=2, choices=Tipo.choices, validators=[Tipo.validator], default=Tipo.Porcentaje)
-    accion = models.CharField(max_length=3, choices=Accion.choices, validators=[Accion.validator],
+    tipo = models.CharField(max_length=10, choices=Tipo.choices, validators=[Tipo.validator], default=Tipo.Porcentaje)
+    accion = models.CharField(max_length=10, choices=Accion.choices, validators=[Accion.validator],
                               default=Accion.Incrementa)
     valor = models.DecimalField(max_digits=5, decimal_places=2)
     _factor = models.DecimalField(max_digits=5, decimal_places=4, db_column='factor', null=True)
@@ -196,17 +197,17 @@ class Cliente(models.Model):
 class Itinerario(models.Model):
     # estatus opciones
     class Status(DjangoChoices):
-        Solicitado = ChoiceItem("SOL")
-        Cotizado = ChoiceItem("COT")
-        Confirmado = ChoiceItem("CON")
-        Facturado = ChoiceItem("FAC")
+        Solicitado = ChoiceItem("Solicitado")
+        Cotizado = ChoiceItem("Cotizado")
+        Confirmado = ChoiceItem("Confirmado")
+        Facturado = ChoiceItem("Facturado")
 
     # Fields
     nombre = models.CharField(max_length=100)
     slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
     fecha_desde = models.DateField(verbose_name='inicia')
     fecha_hasta = models.DateField(verbose_name='termina')
-    estatus = models.CharField(max_length=3, choices=Status.choices, validators=[Status.validator],
+    estatus = models.CharField(max_length=10, choices=Status.choices, validators=[Status.validator],
                                default=Status.Solicitado)
     creado = models.DateTimeField(auto_now_add=True, editable=False)
     actualizado = models.DateTimeField(auto_now=True, editable=False)
