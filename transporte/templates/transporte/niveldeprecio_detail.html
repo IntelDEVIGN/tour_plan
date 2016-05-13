@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td class="derecha">Valor</td>
-                {% if niveldeprecio.tipo == "FI" %}
+                {% if niveldeprecio.tipo == "Porcentaje" %}
                     <td><strong>En un {{ niveldeprecio.valor|porciento }}</strong></td>
                 {% else %}
                     <td><strong>En {{ niveldeprecio.valor }} Lps.</strong></td>

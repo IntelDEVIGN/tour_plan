@@ -26,7 +26,7 @@
                         </td>
                         <td class="centrado">{{ niveldeprecio.get_tipo_display }}</td>
                         <td class="centrado">{{ niveldeprecio.get_accion_display }}</td>
-                        {% if niveldeprecio.tipo == "FI" %}
+                        {% if niveldeprecio.tipo == "Porcentaje" %}
                             <td class="centrado">{{ niveldeprecio.valor|porciento }}</td>
                         {% else %}
                             <td class="centrado">{{ niveldeprecio.valor }}</td>
