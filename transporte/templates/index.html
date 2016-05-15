@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Inicio{% endblock %}
+{% block page-title %}Inicio{% endblock %}
 {% block content %}
     {% if request.user.is_authenticated %}
         <p>Hola {{ request.user.username|title }}, ingresaste por última vez
@@ -14,4 +15,9 @@
             {{ bus.costo_por_dia }}
         {% endfor %}
     </main>
+    <script>
+        $(document).ready(function () {
+            $('#backbutton').hide();
+        });
+    </script>
 {% endblock %}

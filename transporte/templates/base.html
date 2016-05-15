@@ -1,61 +1,47 @@
-{#{% load bootstrap3 %}#}
-{% load static %}
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}title{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    {#    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">#}
-    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"#}
-    {#          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">#}
-    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"#}
-    {#          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">#}
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'
-          media="all">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="Adalberto H. Vega">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
     <script type="application/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    {#    <script type="application/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>#}
-    {% block styles %}
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
+    {% block extlibs %}
     {% endblock %}
-    {% block scripts %}
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    {% endblock %}
-    {#  <link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" />#}
-
-    {#  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>#}
-
-    <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script>
-    {#    <script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script>#}
-    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static "css/layout.css" %}">
 </head>
 <body>
-<div class="site-container" data-role="page">
-    <div data-role="header" style="overflow:hidden;">
-        {#        <h1>Seleccione</h1>#}
-        {#    <a href="#" data-icon="gear" class="ui-btn-right">Opciones</a>#}
-        <div data-role="navbar">
-            <ul>
-                <li>
-                    <a href="/" data-icon="home" class="ui-btn-active">Home</a>
-                </li>
-
-                <li>
-                    <a href="{% url 'transporte_bus_list' %}" data-icon="grid">Buses</a>
-                </li>
-                <li>
-                    <a href="{% url 'transporte_item_list' %}" data-icon="bullets">Items</a>
-                </li>
-                <li>
-                    <a href="{% url 'transporte_parametro_list' %}" data-icon="gear">Parametros</a>
-                </li>
-            </ul>
-        </div>
+<div data-role="page" class="ui-responsive-panel" id="{% block page-id %}Home{% endblock %}">
+    <div data-role="header" data-position="fixed"><h1>{% block page-title %}title{% endblock %}</h1>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+        <a href="javascript:history.back()" data-icon="arrow-l" id="backbutton" data-iconpos="notext">Back</a>
     </div><!-- /header -->
     <div data-role="content">
-        {% block content %}Replace this.{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+    <div data-role="panel" data-display="overlay" data-theme="a" id="nav-panel">
+        <ul data-role="listview">
+            <li data-icon="delete"><a href="#" data-rel="close">Cerrar menu</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'transporte_parametro_list' %}">Parámetros</a></li>
+            <li><a href="{% url 'transporte_bus_list' %}">Vehículos</a></li>
+            <li><a href="{% url 'transporte_niveldeprecio_list' %}">Niveles de Precio</a></li>
+            <li><a href="{% url 'transporte_item_list' %}">Items</a></li>
+            <li><a href="{% url 'transporte_cliente_list' %}">Clientes</a></li>
+            <li><a href="{% url 'transporte_itinerario_list' %}">Itinerarios</a></li>
+            <li><a href="{% url 'transporte_cotizacion_list' %}">Cotizaciones</a></li>
+        </ul>
+    </div><!-- /panel -->
+    <div data-role="footer" data-position="fixed">
+        {% block footer %}{% endblock %}
     </div>
 </div>
+{% block scripts %}
+    replace
+{% endblock %}
 </body>

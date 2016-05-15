@@ -1,43 +1,30 @@
-{% extends "base.html" %}
+{% extends "_list.html" %}
 {% load humanize %}
-{% load bootstrap3 %}
-{% load static %}
 {% load porcentaje %}
-{% block title %}Clientes{% endblock %}
-{% block content %}
-    {#    <script type="application/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>#}
-    <div class="form-group">
-        <form class="form">
-            <table data-role='table' id="table-cliente" data-mode="columntoggle"
-                   class="table ui-shadow table-stripe ui-responsive">
-                <thead>
-                <tr>
-                    <th class="centrado">Cliente</th>
-                    <th data-priority="1" class="centrado">Contacto</th>
-                    <th data-priority="2" class="centrado">Tel</th>
-                    <th data-priority="3" class="centrado">Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for cliente in cliente_list %}
-                    <tr>
-                        <td data-search="{{ cliente.nombre }}"><a class="ui-btn ui-link boton"
-                                                                  href="{{ cliente.get_absolute_url }}">{{ cliente.nombre }}</a>
-                        </td>
-                        <td class="centrado">{{ cliente.contacto }}</td>
-                        <td class="centrado">{{ cliente.tel }}</td>
-                        <td class="centrado">{{ cliente.email }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <a class="ui-btn-active ui-link ui-btn ui-icon-plus ui-btn-icon-left"
-               href="{% url "transporte_cliente_create" %}">Agregar Cliente</a>
-        </form>
-    </div>
-    {#    <script type="application/javascript">#}
-    {#        $(document).ready(function () {#}
-    {#            $('#resultados').DataTable();#}
-    {#        });#}
-    {#    </script>#}
+{% block page-title %}Clientes{% endblock %}
+{% block thead %}
+    <th class="centrado">Cliente</th>
+    <th data-priority="1" class="centrado">Contacto</th>
+    <th data-priority="2" class="centrado">Tel</th>
+    <th data-priority="3" class="centrado">Email</th>
+{% endblock %}
+{% block tbody %}
+    {% for cliente in cliente_list %}
+        <tr>
+            <td data-search="{{ cliente.nombre }}"><a title="Ver Detalles" class="ui-btn ui-link boton"
+                                                      href="{{ cliente.get_absolute_url }}">{{ cliente.nombre }}</a>
+            </td>
+            <td class="centrado">{{ cliente.contacto }}</td>
+            <td class="centrado"><a title="Llamar" href="tel:{{ cliente.tel }}"
+                                    class=" boton ui-link ui-btn ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a>
+            </td>
+            <td class="centrado"><a title="Enviar email" href="mailto:{{ cliente.email }}"
+                                    class=" boton ui-link ui-btn ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+{% block footer %}
+    <a class="boton ui-link ui-btn ui-icon-plus ui-btn-icon-left"
+       href="{% url "transporte_cliente_create" %}">Agregar Nuevo Cliente</a>
 {% endblock %}

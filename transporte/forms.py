@@ -26,7 +26,7 @@ class ItemForm(forms.ModelForm):
 class NivelDePrecioForm(forms.ModelForm):
     class Meta:
         model = NivelDePrecio
-        fields = ['nombre', 'tipo', 'accion', 'valor', '_factor']
+        fields = ['nombre', 'tipo', 'accion', 'valor']
 
 
 class CotizacionForm(forms.ModelForm):

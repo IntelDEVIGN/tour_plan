@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'djchoices',
     'bootstrap3',
-    'crispy_forms',
+    # 'crispy_forms',
     'rest_framework',
     'transporte',
 ]

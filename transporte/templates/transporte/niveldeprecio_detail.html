@@ -1,51 +1,42 @@
-{% extends "base.html" %}
+{% extends "_detail.html" %}
 {% load humanize %}
-{% load bootstrap3 %}
 {% load porcentaje %}
-{% block title %}Detalle de Nivel de Precio{% endblock %}
-{% block content %}
-    <style>
-        body > div.site-container.ui-page.ui-page-theme-a.ui-page-active > div.ui-content > div > a {
-            display : none !important;
-        }
-    </style>
-    <div style="width: 100%">
-        <table data-role="table" id="table-parametro" data-mode="columntoggle"
-               class="ui-table ui-shadow table-stripe  ui-responsive">
-            <thead>
-            <th class="derecha">Nivel de Precio</th>
-            <th class="izquierda">{{ niveldeprecio.nombre }}</th>
-            </thead>
-            <tr>
-                <td class="derecha">Tipo</td>
-                <td><strong>{{ niveldeprecio.get_tipo_display }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Acción</td>
-                <td><strong>{{ niveldeprecio.get_accion_display }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Valor</td>
-                {% if niveldeprecio.tipo == "Porcentaje" %}
-                    <td><strong>En un {{ niveldeprecio.valor|porciento }}</strong></td>
-                {% else %}
-                    <td><strong>En {{ niveldeprecio.valor }} Lps.</strong></td>
-                {% endif %}
-            </tr>
-            <tr>
-                <td class="derecha">Factor</td>
-                <td><strong>{{ niveldeprecio.factor|floatformat:6 }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Creado</td>
-                <td><strong>{{ niveldeprecio.creado|date }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Actualizado</td>
-                <td><strong>{{ niveldeprecio.actualizado|date }}</strong></td>
-            </tr>
-        </table>
-    </div>
-    <a href="{{ niveldeprecio.get_update_url }}" class="ui-btn-active ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+{% block page-title %}Nivel de Precio{% endblock %}
+{% block thead %}
+    <th class="derecha">Nivel de Precio</th>
+    <th class="izquierda">{{ niveldeprecio.nombre }}</th>
+{% endblock %}
+{% block tbody %}
+    <tr>
+        <td class="derecha">Tipo</td>
+        <td><strong>{{ niveldeprecio.get_tipo_display }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Acción</td>
+        <td><strong>{{ niveldeprecio.get_accion_display }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Valor</td>
+        {% if niveldeprecio.tipo == "Porcentaje" %}
+            <td><strong>En un {{ niveldeprecio.valor|porciento }}</strong></td>
+        {% else %}
+            <td><strong>En {{ niveldeprecio.valor }} Lps.</strong></td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td class="derecha">Factor</td>
+        <td><strong>{{ niveldeprecio.factor|floatformat:6 }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Creado</td>
+        <td><strong>{{ niveldeprecio.creado|date }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Actualizado</td>
+        <td><strong>{{ niveldeprecio.actualizado|date }}</strong></td>
+    </tr>
+{% endblock %}
+{% block footer %}
+    <a href="{{ niveldeprecio.get_update_url }}" class="boton ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
         Nivel de Precio</a>
 {% endblock %}

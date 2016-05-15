@@ -36,11 +36,13 @@ td.centrado, th.centrado {
 td.derecha, th.derecha {
     text-align     : right;
     vertical-align : middle !important;
+    padding        : 4px 10px;
 }
 
 td.izquierda, th.izquierda {
     text-align     : left;
     vertical-align : middle !important;
+    padding        : 4px 10px;
 }
 
 td a.boton {
@@ -54,3 +56,51 @@ td a.boton {
     font-family : 'Open Sans Condensed', sans-serif !important;
 }
 
+div#ui-datepicker-div {
+    background-color : #fff;
+    padding          : 10px;
+    border           : #ddd 1px solid;
+    box-shadow       : #ddd 1px 1px 2px;
+    margin-top       : 2px;
+}
+
+span.ui-icon.ui-icon-circle-triangle-w, span.ui-icon.ui-icon-circle-triangle-e {
+    padding : 0px 8px;
+    border  : 1px solid #ddd;
+    margin  : 15px;
+    cursor  : pointer;
+}
+
+#ui-datepicker-div > table > tbody > tr > td {
+    text-align    : right;
+    padding-right : 6px !important;
+    border-color  : #ccc;
+}
+
+.ui-datepicker-title {
+    padding     : 5px;
+    text-align  : center;
+    font-weight : bold;
+    color       : #4f4f4f;
+}
+
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    text-align : center;
+}
+
+.ui-datepicker-calendar th {
+    text-align   : center;
+    border-color : #aaa;
+}
+
+.ui-content {
+    padding : .5em;
+}
+
+.ui-loading .ui-loader {
+    display : none;
+}
+
+.ui-btn {
+    margin : 0;
+}

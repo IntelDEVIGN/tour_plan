@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block extlibs %}
+{% endblock %}
+{% block content %}
+    <div style="padding: 4px">
+        <form id="myform" method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+        </form>
+    </div>
+{% endblock %}
+{% block footer %}
+    <button id="submit" class="boton ui-link ui-btn ui-icon-check ui-btn-icon-left"
+            type="submit">Guardar {% block page-title %}Titulo{% endblock %}
+    </button>
+    <script>
+        $("#submit").click(function () {
+            $("#myform").submit();
+        });
+    </script>
+{% endblock %}
+{% block scripts %}{% endblock %}

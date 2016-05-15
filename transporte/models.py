@@ -174,7 +174,8 @@ class Cliente(models.Model):
     actualizado = models.DateTimeField(auto_now=True, editable=False)
 
     # Relationship Fields
-    cliente_niveldeprecio = models.ForeignKey(NivelDePrecio, verbose_name='nivel de precio', on_delete=models.PROTECT)
+    cliente_niveldeprecio = models.ForeignKey(NivelDePrecio, verbose_name='nivel de precio', on_delete=models.PROTECT,
+                                              default=4)
 
     class Meta:
         ordering = ('-id',)

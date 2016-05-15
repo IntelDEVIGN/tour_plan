@@ -1,42 +1,40 @@
-{% extends "base.html" %}
+{% extends "_detail.html" %}
 {% load humanize %}
 {% load bootstrap3 %}
-{% block title %}Cliente{% endblock %}
-{% block content %}
-    <div style="width: 100%">
-        <table style="width: 100%; border: 1px solid #ccc" class="table ui-responsive table-stripped">
-            <thead>
-            <th class="derecha">Cliente</th>
-            <th class="izquierda">{{ cliente.nombre }}</th>
-            </thead>
-            <tr>
-                <td class="derecha">Contacto</td>
-                <td><strong>{{ cliente.contacto }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Tel</td>
-                <td><a href="tel:{{ cliente.tel }}"
-                       class="ui-btn-active ui-link ui-btn ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a></td>
-            </tr>
-            <tr>
-                <td class="derecha">Email</td>
-                <td><a href="mailto:{{ cliente.email }}"
-                       class="ui-btn-active ui-link ui-btn ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a></td>
-            </tr>
-            <tr>
-                <td class="derecha">Nivel de Precio</td>
-                <td><strong>{{ cliente.cliente_niveldeprecio }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Creado</td>
-                <td><strong>{{ cliente.creado|date }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Actualizado</td>
-                <td><strong>{{ cliente.actualizado|date }}</strong></td>
-            </tr>
-        </table>
-    </div>
-    <a href="{{ cliente.get_update_url }}" class="ui-btn-active ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+{% block page-title %}Detalle de Cliente{% endblock %}
+{% block thead %}
+    <th class="derecha">Cliente</th>
+    <th class="izquierda">{{ cliente.nombre }}</th>
+{% endblock %}
+{% block tbody %}
+    <tr>
+        <td class="derecha">Contacto</td>
+        <td><strong>{{ cliente.contacto }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Tel</td>
+        <td><a title="Llamar" href="tel:{{ cliente.tel }}"
+               class="boton ui-link ui-btn ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a></td>
+    </tr>
+    <tr>
+        <td class="derecha">Email</td>
+        <td><a title="Enviar email" href="mailto:{{ cliente.email }}"
+               class="boton ui-link ui-btn ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a></td>
+    </tr>
+    <tr>
+        <td class="derecha">Nivel de Precio</td>
+        <td><strong>{{ cliente.cliente_niveldeprecio }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Creado</td>
+        <td><strong>{{ cliente.creado|date }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Actualizado</td>
+        <td><strong>{{ cliente.actualizado|date }}</strong></td>
+    </tr>
+{% endblock %}
+{% block footer %}
+    <a href="{{ cliente.get_update_url }}" class="boton ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
         Cliente</a>
 {% endblock %}

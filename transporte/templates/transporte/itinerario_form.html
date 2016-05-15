@@ -1,50 +1,16 @@
-{% extends "base.html" %}
-{#{% load bootstrap3 %}#}
-{% block content %}
-    <div style="padding: 4px">
-        <form method="post" class="form">
-            {% csrf_token %}
-            {#            {% bootstrap_form form %}#}
-            {{ form }}
-            <script>
-                $(document).ready(function () {
-                    $('#id_fecha_desde').datepicker().attr('data-role', 'date');
-                    $('#id_fecha_hasta').datepicker().attr('data-role', 'date');
-                    {#                $('.ui-datepicker').attr('data-role', 'date');#}
-                });
-            </script>
-            {#            {% buttons %}#}
-            <button class="ui-btn-active ui-link ui-btn ui-icon-check ui-btn-icon-left"
-                    type="submit">Guardar Vehículo
-            </button>
-            {#            {% endbuttons %}#}
-        </form>
-    </div>
-    <script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
+{% extends "_form.html" %}
+{% block extlibs %}
     <link rel="stylesheet"
           href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css"/>
+    <script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
+    <script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script>
 {% endblock %}
-
-
-
-{#{% extends "base.html" %}#}
-{#{% load static %}#}
-{#{% load crispy_forms_tags %}#}
-{#{% block content %}#}
-{#    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>#}
-{#    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>#}
-{#    <p><a class="btn btn-default" href="{% url 'transporte_itinerario_list' %}">Itinerario Listing</a></p>#}
-{#    <form method="post">#}
-{#        {% csrf_token %}#}
-{#        {{ form|crispy }}#}
-{#        <script>#}
-{#            $(document).ready(function () {#}
-{#                $('#id_fecha_desde').date();#}
-{#                $('#id_fecha_hasta').date();#}
-{#                $('.ui-datepicker').attr('data-role', 'date');#}
-{#            });#}
-{#        </script>#}
-{#        <button class="btn btn-primary" type="submit">Submit</button>#}
-{#    </form>#}
-{##}
-{#{% endblock %}#}
+{% block page-title %}Itinerario{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#id_fecha_desde').datepicker();
+            $('#id_fecha_hasta').datepicker();
+        });
+    </script>
+{% endblock %}

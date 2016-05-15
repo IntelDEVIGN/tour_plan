@@ -1,30 +1,26 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_itinerario_list' %}">Itinerario Listing</a></p>
-<table class="table">
-<tr>
-<td>ID</td><td>Link</td>
-    <td>nombre</td>
-    <td>slug</td>
-    <td>creado</td>
-    <td>actualizado</td>
-    <td>fecha_desde</td>
-    <td>fecha_hasta</td>
-    <td>estatus</td>
-</tr>
-{% for object in object_list %}
-<tr>
-    <td>{{object.id}}</td>
-    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
-    <td>{{ object.nombre }}</td>
-    <td>{{ object.slug }}</td>
-    <td>{{ object.creado }}</td>
-    <td>{{ object.actualizado }}</td>
-    <td>{{ object.fecha_desde }}</td>
-    <td>{{ object.fecha_hasta }}</td>
-    <td>{{ object.estatus }}</td>
-</tr>
-{% endfor %}
-</table><a class="btn btn-primary" href="{% url 'transporte_itinerario_create' %}">Create new Itinerario</a>
+{% extends "_list.html" %}
+{% load humanize %}
+{% block title %}Itinerarios{% endblock %}
+{% block page-title %}Itinerarios{% endblock %}
+{% block thead %}
+    <th class="centrado">Itinerario</th>
+    <th data-priority="1" class="centrado">Inicia</th>
+    <th data-priority="2" class="centrado">Termina</th>
+    <th data-priority="3" class="centrado">Estatus</th>
+{% endblock %}
+{% block tbody %}
+    {% for itinerario in itinerario_list %}
+        <tr>
+            <td data-search="{{ itinerario.nombre }}"><a class="ui-btn ui-link boton"
+                                                         href="{{ itinerario.get_absolute_url }}">{{ itinerario.nombre }}</a>
+            </td>
+            <td class="centrado">{{ itinerario.fecha_desde }}</td>
+            <td class="centrado">{{ itinerario.fecha_hasta }}</td>
+            <td class="centrado">{{ itinerario.get_status_display }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+{% block footer %}
+    <a class="boton ui-link ui-btn ui-icon-plus ui-btn-icon-left"
+       href="{% url "transporte_itinerario_create" %}">Agregar Nuevo Itinerario</a>
 {% endblock %}

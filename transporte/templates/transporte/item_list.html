@@ -1,36 +1,31 @@
-{% extends "base.html" %}
+{% extends "_list.html" %}
 {% load humanize %}
-{% load bootstrap3 %}
-{% load static %}
 {% block title %}Items{% endblock %}
-{% block content %}
-    {#    <script type="application/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>#}
-    <div class="form-group">
-        <form class="form">
-            <table data-role="table" id="table-item" data-mode="columntoggle"
-                   class="table ui-shadow table-stripe  ui-responsive">
-                <thead>
-                <tr>
-                    <th class="center">Item</th>
-                    <th data-priority="2" class="derecha">Costo</th>
-                    <th data-priority="1" class="derecha">Precio</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for item in item_list %}
-                    <tr>
-                        <td data-search="{{ item.nombre }}"><a class="ui-btn ui-link"
-                                                               style="margin:0 !important; font-family:'Open Sans Condensed' !important;font-size: 14px !important;"
-                                                               href="{{ item.get_absolute_url }}">{{ item.nombre }}</a>
-                        </td>
-                        <td class="derecha">{{ item.costo|intcomma }}</td>
-                        <td class="derecha">{{ item.precio|intcomma }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <a class="ui-btn-active ui-link ui-btn ui-icon-plus ui-btn-icon-left"
-               href="{% url "transporte_item_create" %}">Agregar Nuevo Item</a>
-        </form>
-    </div>
+{% block page-title %}Listado de Items{% endblock %}
+{% block thead %}
+    <th class="center">Item</th>
+    <th data-priority="2" class="derecha">Costo</th>
+    <th data-priority="1" class="derecha">Precio</th>
+    <th data-priority="3" class="izquierda">Unidad</th>
+    <th data-priority="4" class="izquierda">Descripción</th>
+    <th data-priority="5" class="centrado">Tipo</th>
+{% endblock %}
+{% block tbody %}
+    {% for item in item_list %}
+        <tr>
+            <td data-search="{{ item.nombre }}"><a class="ui-btn ui-link"
+                                                   style="margin:0 !important; font-family:'Open Sans Condensed' !important;font-size: 14px !important;"
+                                                   href="{{ item.get_absolute_url }}">{{ item.nombre }}</a>
+            </td>
+            <td class="derecha">{{ item.costo|intcomma }}</td>
+            <td class="derecha">{{ item.precio|intcomma }}</td>
+            <td class="izquierda">{{ item.unidad }}</td>
+            <td class="izquierda">{{ item.descripcion_venta }}</td>
+            <td class="centrado">{{ item.tipo_item }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+{% block footer %}
+    <a class="boton ui-link ui-btn ui-icon-plus ui-btn-icon-left"
+       href="{% url "transporte_item_create" %}">Agregar Nuevo Item</a>
 {% endblock %}

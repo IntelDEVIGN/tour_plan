@@ -1,32 +1,30 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_cotizacion_list' %}">Cotizacion Listing</a></p>
-<table class="table">
-<tr>
-<td>ID</td><td>Link</td>
-    <td>nombre</td>
-    <td>slug</td>
-    <td>creado</td>
-    <td>actualizado</td>
-    <td>fecha_vence</td>
-    <td>subtotal</td>
-    <td>markup</td>
-    <td>total</td>
-</tr>
-{% for object in object_list %}
-<tr>
-    <td>{{object.id}}</td>
-    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
-    <td>{{ object.nombre }}</td>
-    <td>{{ object.slug }}</td>
-    <td>{{ object.creado }}</td>
-    <td>{{ object.actualizado }}</td>
-    <td>{{ object.fecha_vence }}</td>
-    <td>{{ object.subtotal }}</td>
-    <td>{{ object.markup }}</td>
-    <td>{{ object.total }}</td>
-</tr>
-{% endfor %}
-</table><a class="btn btn-primary" href="{% url 'transporte_cotizacion_create' %}">Create new Cotizacion</a>
+{% extends "_list.html" %}
+{% load humanize %}
+{% block title %}Cotizaciones{% endblock %}
+{% block page-title %}Cotizaciones{% endblock %}
+{% block thead %}
+    <th data-priority="9" class="derecha">#</th>
+    <th class="izquierda">Cotización</th>
+    <th data-priority="1" class="centrado">Vence</th>
+    <th data-priority="3" class="derecha">Subtotal</th>
+    <th data-priority="4" class="derecha">Margen</th>
+    <th data-priority="2" class="derecha">Total</th>
+{% endblock %}
+{% block tbody %}
+    {% for cotizacion in cotizacion_list %}
+        <tr>
+            <td class="izquierda">{{ cotizacion.id }}</td>
+            <td data-search="{{ cotizacion.nombre }}"><a class="ui-btn ui-link boton"
+                                                         href="{{ cotizacion.get_absolute_url }}">{{ cotizacion.nombre }}</a>
+            </td>
+            <td class="centrado">{{ cotizacion.fecha_vence }}</td>
+            <td class="derecha">{{ cotizacion.subtotal|intcomma }}</td>
+            <td class="derecha">{{ cotizacion.markup|intcomma }}</td>
+            <td class="derecha">{{ cotizacion.total|intcomma }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+{% block footer %}
+    <a class="boton ui-link ui-btn ui-icon-plus ui-btn-icon-left"
+       href="{% url "transporte_cotizacion_create" %}">Agregar Nueva Cotización</a>
 {% endblock %}

@@ -1,15 +1,2 @@
-{% extends "base.html" %}
-{% load bootstrap3 %}
-{% block content %}
-    <div style="padding: 4px">
-        <form method="post" class="form">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            {% buttons %}
-                <button class="ui-btn-active ui-link ui-btn ui-icon-check ui-btn-icon-left"
-                        type="submit">Guardar Vehículo
-                </button>
-            {% endbuttons %}
-        </form>
-    </div>
-{% endblock %}
+{% extends "_form.html" %}
+{% block page-title %}Vehículo{% endblock %}

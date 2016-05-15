@@ -1,42 +1,34 @@
-{% extends "base.html" %}
+{% extends "_detail.html" %}
 {% load humanize %}
-{% load bootstrap3 %}
 {% block title %}Detalle de Parámetro{% endblock %}
-{% block content %}
-    <style>
-        body > div.site-container.ui-page.ui-page-theme-a.ui-page-active > div.ui-content > div > a {
-            display : none !important;
-        }
-    </style>
-    <div style="width: 100%">
-        <table data-role="table" id="table-parametro" data-mode="columntoggle"
-               class="ui-table ui-shadow table-stripe  ui-responsive">
-            <thead>
-            <th class="derecha">Parámetro</th>
-            <th>{{ parametro.nombre }}</th>
-            </thead>
-            <tr>
-                <td class="derecha">Valor</td>
-                <td><strong>{{ parametro.valor }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Unidad</td>
-                <td><strong>{{ parametro.unidad }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Orden</td>
-                <td><strong>{{ parametro.orden }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Creado</td>
-                <td><strong>{{ parametro.creado|date }}</strong></td>
-            </tr>
-            <tr>
-                <td class="derecha">Actualizado</td>
-                <td><strong>{{ parametro.ultima_actualizacion|date }}</strong></td>
-            </tr>
-        </table>
-    </div>
-    <a href="{{ parametro.get_update_url }}" class="ui-btn-active ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+{% block page-title %}Detalles de Parámetro{% endblock %}
+{% block thead %}
+    <th class="derecha">Parámetro</th>
+    <th>{{ parametro.nombre }}</th>
+{% endblock %}
+{% block tbody %}
+    <tr>
+        <td class="derecha">Valor</td>
+        <td><strong>{{ parametro.valor }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Unidad</td>
+        <td><strong>{{ parametro.unidad }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Orden</td>
+        <td><strong>{{ parametro.orden }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Creado</td>
+        <td><strong>{{ parametro.creado|date }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Actualizado</td>
+        <td><strong>{{ parametro.ultima_actualizacion|date }}</strong></td>
+    </tr>
+{% endblock %}
+{% block footer %}
+    <a href="{{ parametro.get_update_url }}" class="boton ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
         Parámetro</a>
 {% endblock %}
