@@ -21,11 +21,11 @@
     </tr>
     <tr>
         <td class="derecha">Creado</td>
-        <td><strong>{{ parametro.creado|date }}</strong></td>
+        <td><strong>{{ parametro.creado|date:'D d/M/Y' }}</strong></td>
     </tr>
     <tr>
         <td class="derecha">Actualizado</td>
-        <td><strong>{{ parametro.ultima_actualizacion|date }}</strong></td>
+        <td><strong>{{ parametro.ultima_actualizacion|date:'D d/M/Y' }}</strong></td>
     </tr>
 {% endblock %}
 {% block footer %}

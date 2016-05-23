@@ -32,22 +32,22 @@ class NivelDePrecioForm(forms.ModelForm):
 class CotizacionForm(forms.ModelForm):
     class Meta:
         model = Cotizacion
-        fields = ['nombre', 'fecha_vence', 'subtotal', 'markup', 'total', 'cotizacion_itinerario']
+        fields = ['nombre', 'fecha_vence', 'subtotal', 'markup', 'total', 'itinerario']
 
 
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
-        fields = ['nombre', 'contacto', 'email', 'tel', 'cliente_niveldeprecio']
+        fields = ['nombre', 'contacto', 'email', 'tel', 'nivel_de_precio']
 
 
 class ItinerarioForm(forms.ModelForm):
     class Meta:
         model = Itinerario
-        fields = ['nombre', 'fecha_desde', 'fecha_hasta', 'estatus', 'itinerario_cliente']
+        fields = ['nombre', 'fecha_desde', 'fecha_hasta', 'estatus', 'cliente']
 
 
 class CotizacionDetalleForm(forms.ModelForm):
     class Meta:
         model = CotizacionDetalle
-        fields = ['descripcion', 'cantidad', 'markup', 'precio', 'detalle_cotizacion', 'detalle_item']
+        fields = ['descripcion', 'cantidad', 'markup', 'precio', 'cotizacion', 'item']

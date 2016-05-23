@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.db import models as models
@@ -40,12 +42,16 @@ class Bus(models.Model):
 
 
 class Parametro(models.Model):
+    ANNIOS = []
+    for r in range(datetime.datetime.now().year, (datetime.datetime.now().year + 2)):
+        ANNIOS.append((r, r))
     # Fields
+    annio = IntegerField(verbose_name='Año', choices=ANNIOS, default=datetime.datetime.now().year)
     nombre = CharField(max_length=25)
-    slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
     valor = CharField(max_length=100)
     unidad = CharField(max_length=100)
     orden = IntegerField(default=0)
+    slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
     creado = DateTimeField(auto_now_add=True, editable=False)
     actualizado = models.DateTimeField(auto_now=True, editable=False)
 
@@ -84,8 +90,8 @@ class Item(models.Model):
     tipo_item = models.CharField(max_length=13, choices=TipoItem.choices, validators=[TipoItem.validator],
                                  default=TipoItem.Servicio)
     unidad = models.CharField(max_length=50)
-    costo = models.DecimalField(max_digits=10, decimal_places=2)
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    costo = models.DecimalField(max_digits=10, decimal_places=4)
+    precio = models.DecimalField(max_digits=10, decimal_places=4)
     descripcion_compra = models.CharField(max_length=50)
     descripcion_venta = models.CharField(max_length=50)
     creado = models.DateTimeField(auto_now_add=True, editable=False)
@@ -174,8 +180,8 @@ class Cliente(models.Model):
     actualizado = models.DateTimeField(auto_now=True, editable=False)
 
     # Relationship Fields
-    cliente_niveldeprecio = models.ForeignKey(NivelDePrecio, verbose_name='nivel de precio', on_delete=models.PROTECT,
-                                              default=4)
+    nivel_de_precio = models.ForeignKey(NivelDePrecio, verbose_name='nivel de precio', on_delete=models.PROTECT,
+                                        default=4)
 
     class Meta:
         ordering = ('-id',)
@@ -202,6 +208,7 @@ class Itinerario(models.Model):
         Cotizado = ChoiceItem("Cotizado")
         Confirmado = ChoiceItem("Confirmado")
         Facturado = ChoiceItem("Facturado")
+        Cerrado = ChoiceItem("Cerrado")
 
     # Fields
     nombre = models.CharField(max_length=100)
@@ -214,7 +221,7 @@ class Itinerario(models.Model):
     actualizado = models.DateTimeField(auto_now=True, editable=False)
 
     # Relationship Fields
-    itinerario_cliente = models.ForeignKey(Cliente, on_delete=CASCADE, verbose_name='cliente')
+    cliente = models.ForeignKey(Cliente, on_delete=CASCADE, verbose_name='cliente')
 
     class Meta:
         ordering = ('-id',)
@@ -240,13 +247,13 @@ class Cotizacion(models.Model):
     slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
     fecha_vence = models.DateField()
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
-    markup = models.DecimalField(max_digits=10, decimal_places=2)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    markup = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    total = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     creado = models.DateTimeField(auto_now_add=True, editable=False)
     actualizado = models.DateTimeField(auto_now=True, editable=False)
 
     # Relationship Fields
-    cotizacion_itinerario = models.ForeignKey(Itinerario, on_delete=CASCADE, verbose_name='itinerario')
+    itinerario = models.ForeignKey(Itinerario, on_delete=CASCADE, verbose_name='itinerario')
 
     class Meta:
         ordering = ('-id',)
@@ -279,8 +286,8 @@ class CotizacionDetalle(models.Model):
     last_updated = models.DateTimeField(auto_now=True, editable=False)
 
     # Relationship Fields
-    detalle_cotizacion = models.ForeignKey(Cotizacion, on_delete=CASCADE, verbose_name='cotizacion')
-    detalle_item = models.ManyToManyField(Item, verbose_name='item')
+    cotizacion = models.ForeignKey(Cotizacion, on_delete=CASCADE, verbose_name='cotizacion')
+    item = models.ManyToManyField(Item, verbose_name='item')
 
     class Meta:
         ordering = ('-created',)

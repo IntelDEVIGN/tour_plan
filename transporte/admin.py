@@ -5,7 +5,6 @@ from .models import Bus, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, It
 
 
 class BusAdminForm(forms.ModelForm):
-
     class Meta:
         model = Bus
         fields = '__all__'
@@ -13,14 +12,16 @@ class BusAdminForm(forms.ModelForm):
 
 class BusAdmin(admin.ModelAdmin):
     form = BusAdminForm
-    list_display = ['nombre', 'creado', 'actualizado', 'rendimiento', 'costo_por_dia', 'costo_por_km', 'capacidad_nominal', 'capacidad_real', 'chofer_fijo', 'slug']
+    list_display = ['nombre', 'rendimiento', 'costo_por_dia', 'costo_por_km',
+                    'capacidad_nominal', 'capacidad_real', 'chofer_fijo', 'creado', 'actualizado', 'slug']
     readonly_fields = ['creado', 'actualizado', 'slug']
+    search_fields = ['nombre']
+
 
 admin.site.register(Bus, BusAdmin)
 
 
 class ParametroAdminForm(forms.ModelForm):
-
     class Meta:
         model = Parametro
         fields = '__all__'
@@ -28,14 +29,16 @@ class ParametroAdminForm(forms.ModelForm):
 
 class ParametroAdmin(admin.ModelAdmin):
     form = ParametroAdminForm
-    list_display = ['nombre', 'valor', 'unidad', 'orden', 'creado', 'actualizado', 'slug']
+    list_display = ['annio', 'nombre', 'valor', 'unidad', 'orden', 'creado', 'actualizado', 'slug']
     readonly_fields = ['creado', 'actualizado', 'slug']
+    search_fields = ['nombre']
+    list_filter = ['annio']
+
 
 admin.site.register(Parametro, ParametroAdmin)
 
 
 class ItemAdminForm(forms.ModelForm):
-
     class Meta:
         model = Item
         fields = '__all__'
@@ -43,15 +46,16 @@ class ItemAdminForm(forms.ModelForm):
 
 class ItemAdmin(admin.ModelAdmin):
     form = ItemAdminForm
-    list_display = ['nombre', 'slug', 'tipo_item', 'creado', 'actualizado', 'unidad', 'costo', 'precio',
-                    'descripcion_compra', 'descripcion_venta']
+    list_display = ['nombre', 'tipo_item', 'unidad', 'costo', 'precio',
+                    'descripcion_compra', 'descripcion_venta', 'creado', 'actualizado', 'slug']
     readonly_fields = ['slug', 'creado', 'actualizado']
+    search_fields = ['nombre', 'descripcion_compra', 'descripcion_venta']
+
 
 admin.site.register(Item, ItemAdmin)
 
 
 class NivelDePrecioAdminForm(forms.ModelForm):
-
     class Meta:
         model = NivelDePrecio
         fields = '__all__'
@@ -59,15 +63,15 @@ class NivelDePrecioAdminForm(forms.ModelForm):
 
 class NivelDePrecioAdmin(admin.ModelAdmin):
     form = NivelDePrecioAdminForm
-    list_display = ['nombre', 'slug', 'creado', 'actualizado', 'tipo', 'accion', 'valor', 'factor']
+    list_display = ['nombre', 'tipo', 'accion', 'valor', 'factor', 'creado', 'actualizado', 'slug']
     readonly_fields = ['slug', 'factor', 'creado', 'actualizado']
+    search_fields = ['nombre']
 
 
 admin.site.register(NivelDePrecio, NivelDePrecioAdmin)
 
 
 class CotizacionAdminForm(forms.ModelForm):
-
     class Meta:
         model = Cotizacion
         fields = '__all__'
@@ -75,14 +79,17 @@ class CotizacionAdminForm(forms.ModelForm):
 
 class CotizacionAdmin(admin.ModelAdmin):
     form = CotizacionAdminForm
-    list_display = ['nombre', 'slug', 'creado', 'actualizado', 'fecha_vence', 'subtotal', 'markup', 'total']
+    list_display = ['nombre', 'fecha_vence', 'subtotal', 'markup', 'total', 'creado', 'actualizado', 'slug']
     readonly_fields = ['slug', 'creado', 'actualizado']
+    search_fields = ['nombre']
+    list_filter = ['fecha_vence']
+    date_hierarchy = 'fecha_vence'
+
 
 admin.site.register(Cotizacion, CotizacionAdmin)
 
 
 class ClienteAdminForm(forms.ModelForm):
-
     class Meta:
         model = Cliente
         fields = '__all__'
@@ -90,29 +97,35 @@ class ClienteAdminForm(forms.ModelForm):
 
 class ClienteAdmin(admin.ModelAdmin):
     form = ClienteAdminForm
-    list_display = ['nombre', 'slug', 'creado', 'actualizado', 'email', 'tel']
+    list_display = ['nombre', 'contacto', 'email', 'tel', 'creado', 'actualizado', 'slug']
     readonly_fields = ['slug', 'creado', 'actualizado']
+    search_fields = ['nombre', 'contacto', 'email', 'tel']
+
 
 admin.site.register(Cliente, ClienteAdmin)
 
 
 class ItinerarioAdminForm(forms.ModelForm):
-
     class Meta:
         model = Itinerario
-        fields = '__all__'
+        fields = ['cliente', 'nombre', 'fecha_desde', 'fecha_hasta', 'estatus']
 
 
 class ItinerarioAdmin(admin.ModelAdmin):
     form = ItinerarioAdminForm
-    list_display = ['nombre', 'slug', 'creado', 'actualizado', 'fecha_desde', 'fecha_hasta', 'estatus']
+    list_display = ['cliente', 'nombre', 'fecha_desde', 'fecha_hasta', 'estatus', 'creado', 'actualizado',
+                    'slug']
     readonly_fields = ['slug', 'creado', 'actualizado']
+    search_fields = ['cliente', 'nombre', 'fecha_desde']
+    list_filter = ['fecha_desde', 'fecha_hasta', 'estatus']
+    ordering = ['cliente', 'fecha_desde']
+    date_hierarchy = 'fecha_desde'
+
 
 admin.site.register(Itinerario, ItinerarioAdmin)
 
 
 class CotizacionDetalleAdminForm(forms.ModelForm):
-
     class Meta:
         model = CotizacionDetalle
         fields = '__all__'
@@ -120,8 +133,9 @@ class CotizacionDetalleAdminForm(forms.ModelForm):
 
 class CotizacionDetalleAdmin(admin.ModelAdmin):
     form = CotizacionDetalleAdminForm
-    list_display = ['descripcion', 'slug', 'created', 'last_updated', 'cantidad', 'markup', 'precio', 'monto', 'total']
+    list_display = ['descripcion', 'cantidad', 'markup', 'precio', 'monto', 'total', 'created', 'last_updated', 'slug']
     readonly_fields = ['slug', 'created', 'last_updated', 'monto', 'total']
+    search_fields = ['descripcion']
 
 
 admin.site.register(CotizacionDetalle, CotizacionDetalleAdmin)

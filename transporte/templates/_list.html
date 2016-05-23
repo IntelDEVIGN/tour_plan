@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     <div class="form-group">
         <form class="form">
@@ -15,11 +16,4 @@
             </table>
         </form>
     </div>
-{% endblock %}
-{% block scripts %}
-    <script>
-        $(document).ready(function () {
-            $('#Home').find('> div.ui-content > div > form > a').html("Columnas");
-        })
-    </script>
 {% endblock %}

@@ -1,19 +1,21 @@
-{% load static from staticfiles %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}title{% endblock %}</title>
+    <title>
+        {% block title %}title{% endblock %}
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% block description %}{% endblock %}">
     <meta name="author" content="Adalberto H. Vega">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
     <script type="application/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
     {% block extlibs %}
     {% endblock %}
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="{% static "css/layout.css" %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
 </head>
 <body>
 <div data-role="page" class="ui-responsive-panel" id="{% block page-id %}Home{% endblock %}">
@@ -34,6 +36,7 @@
             <li><a href="{% url 'transporte_item_list' %}">Items</a></li>
             <li><a href="{% url 'transporte_cliente_list' %}">Clientes</a></li>
             <li><a href="{% url 'transporte_itinerario_list' %}">Itinerarios</a></li>
+            <li><a href="{% url 'transporte_itinerario_table' %}">Itinerarios Tabla</a></li>
             <li><a href="{% url 'transporte_cotizacion_list' %}">Cotizaciones</a></li>
         </ul>
     </div><!-- /panel -->

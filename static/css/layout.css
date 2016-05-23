@@ -1,9 +1,13 @@
-html, body, p {
+html, body, p, .ui-checkbox .ui-btn, .ui-radio .ui-btn, td a.boton, .ui-btn {
     font-family : 'Open Sans Condensed', 'Fira Sans', 'Segoe UI', 'sans-serif' !important;
 }
 
 #resultados, table {
     font-size : smaller !important;
+}
+
+a.ui-table-columntoggle-btn.ui-btn.ui-btn-a.ui-corner-all.ui-shadow.ui-mini {
+    margin-bottom: 7px;
 }
 
 .btn, h2, h3 {
@@ -12,7 +16,6 @@ html, body, p {
 
 .ui-checkbox .ui-btn, .ui-radio .ui-btn {
     padding-left  : 37px !important;
-    font-family   : 'Open Sans Condensed', 'Fira Sans', 'Segoe UI', 'sans-serif' !important;
     border-radius : .25em !important;
 }
 
@@ -22,10 +25,10 @@ html, body, p {
 
 thead {
     background-color : #38c;
-    border-color     : #38c;
+    border-color:      #059;
     color            : #fff;
     text-shadow      : 0 1px 0 #059;
-    font-size        : large;
+    font-size:         1.1em;
 }
 
 td.centrado, th.centrado {
@@ -46,14 +49,12 @@ td.izquierda, th.izquierda {
 }
 
 td a.boton {
-    margin      : 0 !important;
-    font-family : 'Open Sans Condensed', sans-serif !important;
-    font-size   : 14px !important;
+    margin:    0 !important;
+    font-size: 14px !important;
 }
 
 .ui-btn {
-    font-size   : 14px !important;
-    font-family : 'Open Sans Condensed', sans-serif !important;
+    font-size: 14px !important;
 }
 
 div#ui-datepicker-div {
@@ -65,7 +66,7 @@ div#ui-datepicker-div {
 }
 
 span.ui-icon.ui-icon-circle-triangle-w, span.ui-icon.ui-icon-circle-triangle-e {
-    padding : 0px 8px;
+    padding:  0 8px;
     border  : 1px solid #ddd;
     margin  : 15px;
     cursor  : pointer;
@@ -103,4 +104,8 @@ span.ui-icon.ui-icon-circle-triangle-w, span.ui-icon.ui-icon-circle-triangle-e {
 
 .ui-btn {
     margin : 0;
+}
+
+.ui-select .ui-btn select {
+    z-index: 1;
 }

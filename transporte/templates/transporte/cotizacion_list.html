@@ -17,7 +17,7 @@
             <td data-search="{{ cotizacion.nombre }}"><a class="ui-btn ui-link boton"
                                                          href="{{ cotizacion.get_absolute_url }}">{{ cotizacion.nombre }}</a>
             </td>
-            <td class="centrado">{{ cotizacion.fecha_vence }}</td>
+            <td class="centrado">{{ cotizacion.fecha_vence|date:"D d/b" }}</td>
             <td class="derecha">{{ cotizacion.subtotal|intcomma }}</td>
             <td class="derecha">{{ cotizacion.markup|intcomma }}</td>
             <td class="derecha">{{ cotizacion.total|intcomma }}</td>

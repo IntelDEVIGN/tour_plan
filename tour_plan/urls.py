@@ -6,6 +6,7 @@ from transporte import api
 from transporte import views
 from transporte.views import indice
 
+admin.autodiscover()
 router = routers.DefaultRouter()
 router.register(r'bus', api.BusViewSet)
 router.register(r'parametro', api.ParametroViewSet)
@@ -19,6 +20,8 @@ router.register(r'cotizaciondetalle', api.CotizacionDetalleViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', indice, name='home'),
+    url(r'^calendar/', include('happenings.urls', namespace='calendar')),
+    url(r'^tabla/$', views.ItinerarioDataTable.as_view(), name='transporte_itinerario_table'),
 ]
 
 urlpatterns += [

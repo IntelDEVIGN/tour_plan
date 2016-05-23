@@ -1,5 +1,6 @@
 {% extends "_detail.html" %}
 {% load humanize %}
+{% block title %}Detalles de Vehículo{% endblock %}
 {% block page-title %}Detalles de Vehículo{% endblock %}
 {% block thead %}
     <th class="derecha">Vehículo</th>
@@ -36,11 +37,11 @@
     </tr>
     <tr>
         <td class="derecha">Creado</td>
-        <td><strong>{{ bus.creado|date }}</strong></td>
+        <td><strong>{{ bus.creado|date:'D d/M/Y' }}</strong></td>
     </tr>
     <tr>
         <td class="derecha">Actualizado</td>
-        <td><strong>{{ bus.actualizado|date }}</strong></td>
+        <td><strong>{{ bus.actualizado|date:'D d/M/Y' }}</strong></td>
     </tr>
 {% endblock %}
 {% block footer %}

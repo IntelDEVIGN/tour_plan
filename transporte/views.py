@@ -22,6 +22,14 @@ def indice(request):
     return render(request, "index.html", context)
 
 
+class ItinerarioDataTable(ListView):
+    model = Itinerario
+    template_name = 'itinerario_datatable.html'
+
+    def get_queryset(self):
+        return Itinerario.objects.all()
+
+
 class BusListView(ListView):
     model = Bus
 

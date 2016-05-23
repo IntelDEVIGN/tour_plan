@@ -14,8 +14,8 @@
             <td data-search="{{ itinerario.nombre }}"><a class="ui-btn ui-link boton"
                                                          href="{{ itinerario.get_absolute_url }}">{{ itinerario.nombre }}</a>
             </td>
-            <td class="centrado">{{ itinerario.fecha_desde }}</td>
-            <td class="centrado">{{ itinerario.fecha_hasta }}</td>
+            <td class="centrado">{{ itinerario.fecha_desde|date:"D d/b" }}</td>
+            <td class="centrado">{{ itinerario.fecha_hasta|date:"D d/b" }}</td>
             <td class="centrado">{{ itinerario.get_status_display }}</td>
         </tr>
     {% endfor %}

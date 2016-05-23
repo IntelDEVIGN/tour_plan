@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -39,8 +40,10 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'djchoices',
     'bootstrap3',
+    # 'jqm',
     # 'crispy_forms',
     'rest_framework',
+    'happenings',
     'transporte',
 ]
 
@@ -56,6 +59,8 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'tour_plan.urls'
+
+FORMAT_MODULE_PATH = 'tour_plan.formats'
 
 TEMPLATES = [
     {
@@ -107,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'es-MX'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Tegucigalpa'
 

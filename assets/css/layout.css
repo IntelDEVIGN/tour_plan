@@ -25,7 +25,7 @@ a.ui-table-columntoggle-btn.ui-btn.ui-btn-a.ui-corner-all.ui-shadow.ui-mini {
 
 thead {
     background-color : #38c;
-    border-color     : #38c;
+    border-color:      #059;
     color            : #fff;
     text-shadow      : 0 1px 0 #059;
     font-size        : 1.1em;
@@ -66,7 +66,7 @@ div#ui-datepicker-div {
 }
 
 span.ui-icon.ui-icon-circle-triangle-w, span.ui-icon.ui-icon-circle-triangle-e {
-    padding : 0px 8px;
+    padding:  0 8px;
     border  : 1px solid #ddd;
     margin  : 15px;
     cursor  : pointer;

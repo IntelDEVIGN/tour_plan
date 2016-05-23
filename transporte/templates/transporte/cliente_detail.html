@@ -1,6 +1,7 @@
 {% extends "_detail.html" %}
 {% load humanize %}
 {% load bootstrap3 %}
+{% block title %}Detalle de Cliente{% endblock %}
 {% block page-title %}Detalle de Cliente{% endblock %}
 {% block thead %}
     <th class="derecha">Cliente</th>
@@ -23,15 +24,15 @@
     </tr>
     <tr>
         <td class="derecha">Nivel de Precio</td>
-        <td><strong>{{ cliente.cliente_niveldeprecio }}</strong></td>
+        <td><strong>{{ cliente.nivel_de_precio }}</strong></td>
     </tr>
     <tr>
         <td class="derecha">Creado</td>
-        <td><strong>{{ cliente.creado|date }}</strong></td>
+        <td><strong>{{ cliente.creado|date:'D d/M/Y' }}</strong></td>
     </tr>
     <tr>
         <td class="derecha">Actualizado</td>
-        <td><strong>{{ cliente.actualizado|date }}</strong></td>
+        <td><strong>{{ cliente.actualizado|date:'D d/M/Y' }}</strong></td>
     </tr>
 {% endblock %}
 {% block footer %}

@@ -1,6 +1,7 @@
 {% extends "_detail.html" %}
 {% load humanize %}
 {% load porcentaje %}
+{% block title %}Nivel de Precio{% endblock %}
 {% block page-title %}Nivel de Precio{% endblock %}
 {% block thead %}
     <th class="derecha">Nivel de Precio</th>
@@ -29,11 +30,11 @@
     </tr>
     <tr>
         <td class="derecha">Creado</td>
-        <td><strong>{{ niveldeprecio.creado|date }}</strong></td>
+        <td><strong>{{ niveldeprecio.creado|date:'D d/M/Y' }}</strong></td>
     </tr>
     <tr>
         <td class="derecha">Actualizado</td>
-        <td><strong>{{ niveldeprecio.actualizado|date }}</strong></td>
+        <td><strong>{{ niveldeprecio.actualizado|date:'D d/M/Y' }}</strong></td>
     </tr>
 {% endblock %}
 {% block footer %}
