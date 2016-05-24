@@ -1,24 +1,24 @@
 from django import forms
 from django.contrib import admin
 
-from .models import Bus, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, CotizacionDetalle
+from .models import TipoDeVehiculo, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, CotizacionDetalle
 
 
-class BusAdminForm(forms.ModelForm):
+class TipoDeVehiculoAdminForm(forms.ModelForm):
     class Meta:
-        model = Bus
+        model = TipoDeVehiculo
         fields = '__all__'
 
 
-class BusAdmin(admin.ModelAdmin):
-    form = BusAdminForm
+class TipoDeVehiculoAdmin(admin.ModelAdmin):
+    form = TipoDeVehiculoAdminForm
     list_display = ['nombre', 'rendimiento', 'costo_por_dia', 'costo_por_km',
                     'capacidad_nominal', 'capacidad_real', 'chofer_fijo', 'creado', 'actualizado', 'slug']
     readonly_fields = ['creado', 'actualizado', 'slug']
     search_fields = ['nombre']
 
 
-admin.site.register(Bus, BusAdmin)
+admin.site.register(TipoDeVehiculo, TipoDeVehiculoAdmin)
 
 
 class ParametroAdminForm(forms.ModelForm):

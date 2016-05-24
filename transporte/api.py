@@ -4,11 +4,11 @@ from . import models
 from . import serializers
 
 
-class BusViewSet(viewsets.ModelViewSet):
-    """ViewSet for the Bus class"""
+class TipoDeVehiculoViewSet(viewsets.ModelViewSet):
+    """ViewSet for the TipoDeVehiculo class"""
 
-    queryset = models.Bus.objects.all()
-    serializer_class = serializers.BusSerializer
+    queryset = models.TipoDeVehiculo.objects.all()
+    serializer_class = serializers.TipoDeVehiculoSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 

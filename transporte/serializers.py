@@ -3,10 +3,10 @@ from rest_framework import serializers
 from . import models
 
 
-class BusSerializer(serializers.ModelSerializer):
+class TipoDeVehiculoSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Bus
+        model = models.TipoDeVehiculo
         fields = (
             'slug', 
             'nombre', 

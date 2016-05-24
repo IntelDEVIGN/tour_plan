@@ -1,0 +1,50 @@
+{% extends "_detail.html" %}
+{% load humanize %}
+{% block title %}Detalles de Tipo de Vehículo{% endblock %}
+{% block page-title %}Detalles de Tipo de Vehículo{% endblock %}
+{% block thead %}
+    <th class="derecha">Tipo de Vehículo</th>
+    <th class="izquierda">{{ tipodevehiculo.nombre }}</th>
+{% endblock %}
+{% block tbody %}
+    <tr>
+        <td class="derecha">Rendimiento</td>
+        <td><strong>{{ tipodevehiculo.rendimiento }} Kms/Gal</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Costo/Dia</td>
+        <td><strong>Lps. {{ tipodevehiculo.costo_por_dia|intcomma }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Costo/Km</td>
+        <td><strong>Lps. {{ tipodevehiculo.costo_por_km }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Asientos</td>
+        <td><strong>{{ tipodevehiculo.capacidad_nominal }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Capacidad</td>
+        <td><strong>{{ tipodevehiculo.capacidad_real }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Chofer Fijo?</td>
+        <td><strong>{{ tipodevehiculo.chofer_fijo|yesno }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Activo?</td>
+        <td><strong>{{ tipodevehiculo.activo|yesno }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Creado</td>
+        <td><strong>{{ tipodevehiculo.creado|date:'D d/M/Y' }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Actualizado</td>
+        <td><strong>{{ tipodevehiculo.actualizado|date:'D d/M/Y' }}</strong></td>
+    </tr>
+{% endblock %}
+{% block footer %}
+    <a href="{{ tipodevehiculo.get_update_url }}" class="boton ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+        Tipo de Vehículo</a>
+{% endblock %}

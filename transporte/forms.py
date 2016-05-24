@@ -1,12 +1,12 @@
 from django import forms
 
-from .models import Bus, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
+from .models import TipoDeVehiculo, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
     CotizacionDetalle
 
 
-class BusForm(forms.ModelForm):
+class TipoDeVehiculoForm(forms.ModelForm):
     class Meta:
-        model = Bus
+        model = TipoDeVehiculo
         fields = ['nombre', 'rendimiento', 'costo_por_dia', 'costo_por_km', 'capacidad_nominal', 'capacidad_real',
                   'activo', 'chofer_fijo']
 

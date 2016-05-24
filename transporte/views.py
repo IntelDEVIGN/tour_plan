@@ -1,22 +1,22 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
-from .forms import BusForm, ParametroForm, ItemForm, NivelDePrecioForm, CotizacionForm, ClienteForm, \
+from .forms import TipoDeVehiculoForm, ParametroForm, ItemForm, NivelDePrecioForm, CotizacionForm, ClienteForm, \
     ItinerarioForm, CotizacionDetalleForm
-from .models import Bus, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
+from .models import TipoDeVehiculo, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
     CotizacionDetalle
 
 
 def indice(request):
     """
     :param request:
-    :return: Listado de Buses
+    :return: Listado de TipoDeVehiculoes
     """
 
-    buses = Bus.objects.all()
+    tipo_de_vehiculo = TipoDeVehiculo.objects.all()
 
     context = {
-        'buses': buses,
+        'tipo_de_vehiculo': tipo_de_vehiculo,
     }
 
     return render(request, "index.html", context)
@@ -30,22 +30,22 @@ class ItinerarioDataTable(ListView):
         return Itinerario.objects.all()
 
 
-class BusListView(ListView):
-    model = Bus
+class TipoDeVehiculoListView(ListView):
+    model = TipoDeVehiculo
 
 
-class BusCreateView(CreateView):
-    model = Bus
-    form_class = BusForm
+class TipoDeVehiculoCreateView(CreateView):
+    model = TipoDeVehiculo
+    form_class = TipoDeVehiculoForm
 
 
-class BusDetailView(DetailView):
-    model = Bus
+class TipoDeVehiculoDetailView(DetailView):
+    model = TipoDeVehiculo
 
 
-class BusUpdateView(UpdateView):
-    model = Bus
-    form_class = BusForm
+class TipoDeVehiculoUpdateView(UpdateView):
+    model = TipoDeVehiculo
+    form_class = TipoDeVehiculoForm
 
 
 class ParametroListView(ListView):

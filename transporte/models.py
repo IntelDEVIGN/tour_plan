@@ -1,5 +1,3 @@
-import datetime
-
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.db import models as models
@@ -9,7 +7,7 @@ from django_extensions.db import fields as extension_fields
 from djchoices import DjangoChoices, ChoiceItem
 
 
-class Bus(models.Model):
+class TipoDeVehiculo(models.Model):
     # Fields
     nombre = CharField(max_length=20)
     slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
@@ -25,8 +23,8 @@ class Bus(models.Model):
 
     class Meta:
         ordering = ('-id',)
-        verbose_name = _('Vehículo')
-        verbose_name_plural = _('Vehículos')
+        verbose_name = _('Tipo de Vehículo')
+        verbose_name_plural = _('Tipos de Vehículo')
 
     def __str__(self):
         return self.nombre
@@ -35,10 +33,10 @@ class Bus(models.Model):
         return u'%s' % self.slug
 
     def get_absolute_url(self):
-        return reverse('transporte_bus_detail', args=(self.slug,))
+        return reverse('transporte_tipodevehiculo_detail', args=(self.slug,))
 
     def get_update_url(self):
-        return reverse('transporte_bus_update', args=(self.slug,))
+        return reverse('transporte_tipodevehiculo_update', args=(self.slug,))
 
 
 class Parametro(models.Model):

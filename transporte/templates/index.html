@@ -9,10 +9,10 @@
         <p>Bienvenido Invitado!</p>
     {% endif %}
     <main>
-        <h1>{{ buses.count }} bus(es)</h1>
-        {% for bus in buses %}
-            <h2>{{ bus.nombre }}</h2>
-            {{ bus.costo_por_dia }}
+        <h1>{{ tipodevehiculoes.count }} tipodevehiculo(es)</h1>
+        {% for tipodevehiculo in tipodevehiculoes %}
+            <h2>{{ tipodevehiculo.nombre }}</h2>
+            {{ tipodevehiculo.costo_por_dia }}
         {% endfor %}
     </main>
     <script>

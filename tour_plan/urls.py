@@ -8,7 +8,7 @@ from transporte.views import indice
 
 admin.autodiscover()
 router = routers.DefaultRouter()
-router.register(r'bus', api.BusViewSet)
+router.register(r'tipodevehiculo', api.TipoDeVehiculoViewSet)
 router.register(r'parametro', api.ParametroViewSet)
 router.register(r'item', api.ItemViewSet)
 router.register(r'niveldeprecio', api.NivelDePrecioViewSet)
@@ -30,13 +30,14 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    # urls for Bus
-    url(r'^transporte/bus/$', views.BusListView.as_view(), name='transporte_bus_list'),
-    url(r'^transporte/bus/create/$', views.BusCreateView.as_view(), name='transporte_bus_create'),
-    url(r'^transporte/bus/detail/(?P<slug>\S+)/$', views.BusDetailView.as_view(),
-        name='transporte_bus_detail'),
-    url(r'^transporte/bus/update/(?P<slug>\S+)/$', views.BusUpdateView.as_view(),
-        name='transporte_bus_update'),
+    # urls for TipoDeVehiculo
+    url(r'^transporte/tipodevehiculo/$', views.TipoDeVehiculoListView.as_view(), name='transporte_tipodevehiculo_list'),
+    url(r'^transporte/tipodevehiculo/create/$', views.TipoDeVehiculoCreateView.as_view(),
+        name='transporte_tipodevehiculo_create'),
+    url(r'^transporte/tipodevehiculo/detail/(?P<slug>\S+)/$', views.TipoDeVehiculoDetailView.as_view(),
+        name='transporte_tipodevehiculo_detail'),
+    url(r'^transporte/tipodevehiculo/update/(?P<slug>\S+)/$', views.TipoDeVehiculoUpdateView.as_view(),
+        name='transporte_tipodevehiculo_update'),
 ]
 
 urlpatterns += [

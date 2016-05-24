@@ -1,7 +1,7 @@
 # import unittest
 # from django.core.urlresolvers import reverse
 # from django.test import Client
-# from .models import Bus, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, CotizacionDetalle
+# from .models import TipoDeVehiculo, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, CotizacionDetalle
 # from django.contrib.auth.models import User
 # from django.contrib.auth.models import Group
 # from django.contrib.contenttypes.models import ContentType
@@ -28,7 +28,7 @@
 #     return ContentType.objects.create(**defaults)
 #
 #
-# def create_bus(**kwargs):
+# def create_tipodevehiculo(**kwargs):
 #     defaults = {}
 #     defaults["nombre"] = "nombre"
 #     defaults["slug"] = "slug"
@@ -40,7 +40,7 @@
 #     defaults["chofer_fijo"] = "chofer_fijo"
 #     defaults["activo"] = "activo"
 #     defaults.update(**kwargs)
-#     return Bus.objects.create(**defaults)
+#     return TipoDeVehiculo.objects.create(**defaults)
 #
 #
 # def create_parametro(**kwargs):
@@ -134,20 +134,20 @@
 #     return CotizacionDetalle.objects.create(**defaults)
 #
 #
-# class BusViewTest(unittest.TestCase):
+# class TipoDeVehiculoViewTest(unittest.TestCase):
 #     '''
-#     Tests for Bus
+#     Tests for TipoDeVehiculo
 #     '''
 #     def setUp(self):
 #         self.client = Client()
 #
-#     def test_list_bus(self):
-#         url = reverse('transporte_bus_list')
+#     def test_list_tipodevehiculo(self):
+#         url = reverse('transporte_tipodevehiculo_list')
 #         response = self.client.get(url)
 #         self.assertEqual(response.status_code, 200)
 #
-#     def test_create_bus(self):
-#         url = reverse('transporte_bus_create')
+#     def test_create_tipodevehiculo(self):
+#         url = reverse('transporte_tipodevehiculo_create')
 #         data = {
 #             "nombre": "nombre",
 #             "slug": "slug",
@@ -162,14 +162,14 @@
 #         response = self.client.post(url, data=data)
 #         self.assertEqual(response.status_code, 302)
 #
-#     def test_detail_bus(self):
-#         bus = create_bus()
-#         url = reverse('transporte_bus_detail', args=[bus.slug,])
+#     def test_detail_tipodevehiculo(self):
+#         tipodevehiculo = create_tipodevehiculo()
+#         url = reverse('transporte_tipodevehiculo_detail', args=[tipodevehiculo.slug,])
 #         response = self.client.get(url)
 #         self.assertEqual(response.status_code, 200)
 #
-#     def test_update_bus(self):
-#         bus = create_bus()
+#     def test_update_tipodevehiculo(self):
+#         tipodevehiculo = create_tipodevehiculo()
 #         data = {
 #             "nombre": "nombre",
 #             "slug": "slug",
@@ -181,7 +181,7 @@
 #             "chofer_fijo": "chofer_fijo",
 #             "activo": "activo",
 #         }
-#         url = reverse('transporte_bus_update', args=[bus.slug,])
+#         url = reverse('transporte_tipodevehiculo_update', args=[tipodevehiculo.slug,])
 #         response = self.client.post(url, data)
 #         self.assertEqual(response.status_code, 302)
 #
