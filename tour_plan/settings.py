@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'admin_bootstrapped_plus',
+    # 'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
@@ -40,13 +42,14 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'djchoices',
     'bootstrap3',
-    # 'jqm',
-    # 'crispy_forms',
+    'crispy_forms',
     'rest_framework',
     'happenings',
     'googlemaps',
     'transporte',
 ]
+
+DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,7 +122,7 @@ TIME_ZONE = 'America/Tegucigalpa'
 
 USE_I18N = True
 
-USE_L10N = True
+# USE_L10N = True
 
 USE_TZ = True
 

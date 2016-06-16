@@ -3,20 +3,35 @@
 {% block content %}
 <p><a class="btn btn-default" href="{% url 'transporte_itinerario_list' %}">Itinerario Listing</a></p>
 <table class="table">
-<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
-<tr><td>slug</td><td>{{ object.slug }}</td></tr>
-<tr><td>creado</td><td>{{ object.creado }}</td></tr>
-<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
+    <tr>
+        <td>nombre</td>
+        <td>{{ itinerario.nombre }}</td>
+    </tr>
+    <tr>
+        <td>slug</td>
+        <td>{{ itinerario.slug }}</td>
+    </tr>
+    <tr>
+        <td>creado</td>
+        <td>{{ itinerario.creado }}</td>
+    </tr>
+    <tr>
+        <td>actualizado</td>
+        <td>{{ itinerario.actualizado }}</td>
+    </tr>
     <tr>
         <td>fecha_desde</td>
-        <td>{{ object.fecha_desde|date:"D d/b" }}</td>
+        <td>{{ itinerario.fecha_desde|date:"D d/b" }}</td>
     </tr>
     <tr>
         <td>fecha_hasta</td>
-        <td>{{ object.fecha_hasta|date:"D d/b" }}</td>
+        <td>{{ itinerario.fecha_hasta|date:"D d/b" }}</td>
     </tr>
-<tr><td>estatus</td><td>{{ object.estatus }}</td></tr>
+    <tr>
+        <td>estatus</td>
+        <td>{{ itinerario.get_estatus_display }}</td>
+    </tr>
 </table>
-<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Itinerario</a>
+    <a class="btn btn-primary" href="{{ itinerario.get_update_url }}">Edit Itinerario</a>
 
 {% endblock %}

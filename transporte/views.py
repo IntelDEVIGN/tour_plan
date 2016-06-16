@@ -2,29 +2,24 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from .forms import TipoDeVehiculoForm, ParametroForm, ItemForm, NivelDePrecioForm, CotizacionForm, ClienteForm, \
-    ItinerarioForm, CotizacionDetalleForm
+    ItinerarioForm, CotizacionDetalleForm, VehiculoForm
 from .models import TipoDeVehiculo, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
-    CotizacionDetalle
+    CotizacionDetalle, Vehiculo
 
 
 def indice(request):
     """
     :param request:
-    :return: Listado de TipoDeVehiculoes
+    :return: Listado de TipoDeVehiculos
     """
 
-    tipo_de_vehiculo = TipoDeVehiculo.objects.all()
-
-    context = {
-        'tipo_de_vehiculo': tipo_de_vehiculo,
-    }
-
-    return render(request, "index.html", context)
+    tipos_de_vehiculo = TipoDeVehiculo.objects.all()
+    return render(request, "transporte/index.html", {'tipos_de_vehiculo': tipos_de_vehiculo})
 
 
 class ItinerarioDataTable(ListView):
     model = Itinerario
-    template_name = 'itinerario_datatable.html'
+    template_name = 'transporte/itinerario_datatable.html'
 
     def get_queryset(self):
         return Itinerario.objects.all()
@@ -172,3 +167,21 @@ class CotizacionDetalleDetailView(DetailView):
 class CotizacionDetalleUpdateView(UpdateView):
     model = CotizacionDetalle
     form_class = CotizacionDetalleForm
+
+
+class VehiculoListView(ListView):
+    model = Vehiculo
+
+
+class VehiculoCreateView(CreateView):
+    model = Vehiculo
+    form_class = VehiculoForm
+
+
+class VehiculoDetailView(DetailView):
+    model = Vehiculo
+
+
+class VehiculoUpdateView(UpdateView):
+    model = Vehiculo
+    form_class = VehiculoForm

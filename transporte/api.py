@@ -68,3 +68,9 @@ class CotizacionDetalleViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class VehiculoViewSet(viewsets.ModelViewSet):
+    """ViewSet for the Vehiculo class"""
+
+    queryset = models.Vehiculo.objects.all()
+    serializer_class = serializers.VehiculoSerializer
+    permission_classes = [permissions.IsAuthenticated]

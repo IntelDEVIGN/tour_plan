@@ -16,11 +16,11 @@
             </td>
             <td class="centrado">{{ itinerario.fecha_desde|date:"D d/b" }}</td>
             <td class="centrado">{{ itinerario.fecha_hasta|date:"D d/b" }}</td>
-            <td class="centrado">{{ itinerario.get_status_display }}</td>
+            <td class="centrado">{{ itinerario.get_estatus_display }}</td>
         </tr>
     {% endfor %}
 {% endblock %}
 {% block footer %}
-    <a class="boton ui-link ui-btn ui-icon-plus ui-btn-icon-left"
+    <a class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-plus ui-btn-icon-left"
        href="{% url "transporte_itinerario_create" %}">Agregar Nuevo Itinerario</a>
 {% endblock %}

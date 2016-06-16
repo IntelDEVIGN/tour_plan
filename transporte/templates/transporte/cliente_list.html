@@ -17,15 +17,15 @@
             </td>
             <td class="centrado">{{ cliente.contacto }}</td>
             <td class="centrado"><a title="Llamar" href="tel:{{ cliente.tel }}"
-                                    class=" boton ui-link ui-btn ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a>
+                                    class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-phone ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a>
             </td>
-            <td class="centrado"><a title="Enviar email" href="mailto:{{ cliente.email }}"
-                                    class=" boton ui-link ui-btn ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a>
+            <td class="izquierda"><a title="Enviar email" href="mailto:{{ cliente.email }}"
+                                     class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a>
             </td>
         </tr>
     {% endfor %}
 {% endblock %}
 {% block footer %}
-    <a class="boton ui-link ui-btn ui-icon-plus ui-btn-icon-left"
+    <a class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-plus ui-btn-icon-left"
        href="{% url "transporte_cliente_create" %}">Agregar Nuevo Cliente</a>
 {% endblock %}

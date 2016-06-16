@@ -1,16 +1,20 @@
 {% extends "_form.html" %}
 {% block title %}Cotización{% endblock %}
 {% block page-title %}Cotización{% endblock %}
-{% block extlibs %}
+
+{% block extcss %}
     <link rel="stylesheet"
-          href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css"/>
-    <script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
-    <script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script>
+          href="http://cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css">
+{% endblock %}
+
+{% block extlibs %}
+    <script src="http://cdn.rawgit.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
+    <script src="http://cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
 {% endblock %}
 
 {% block scripts %}
     <script>
-        $(document).ready(function () {
+        $(function () {
             $('#id_fecha_vence').datepicker();
         });
     </script>

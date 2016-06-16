@@ -2,9 +2,24 @@
 {% load humanize %}
 {% block title %}Itinerarios{% endblock %}
 {% block page-title %}Itinerarios{% endblock %}
+
+{% block extcss %}
+    {#    <link type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">#}
+    {#    <link rel="stylesheet" type="text/css"#}
+    {#          href="https://cdn.datatables.net/u/ju-1.11.4/jqc-1.12.3,pdfmake-0.1.18,dt-1.10.12,af-2.1.2,b-1.2.1,b-colvis-1.2.1,b-html5-1.2.1,b-print-1.2.1,cr-1.3.2,fc-3.2.2,fh-3.1.2,r-2.1.0/datatables.min.css"/>#}
+    {#    <link rel="stylesheet" type="text/css"#}
+    {#          href="https://cdn.datatables.net/u/bs-3.3.6/jqc-1.12.3,dt-1.10.12,b-1.2.1,b-colvis-1.2.1,fc-3.2.2,fh-3.1.2,r-2.1.0,sc-1.4.2,se-1.2.0/datatables.min.css"/>#}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/u/zf-5.5.2/jqc-1.12.3,dt-1.10.12/datatables.min.css"/>
+{% endblock %}
 {% block extlibs %}
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
-    <script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js "></script>
+    {#    <script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js "></script>#}
+    {#    <script type="text/javascript"#}
+    {#            src="https://cdn.datatables.net/u/ju-1.11.4/jqc-1.12.3,pdfmake-0.1.18,dt-1.10.12,af-2.1.2,b-1.2.1,b-colvis-1.2.1,b-html5-1.2.1,b-print-1.2.1,cr-1.3.2,fc-3.2.2,fh-3.1.2,r-2.1.0/datatables.min.js"></script>#}
+    {#    <script type="text/javascript"#}
+    {#            src="https://cdn.datatables.net/u/bs-3.3.6/jqc-1.12.3,dt-1.10.12,b-1.2.1,b-colvis-1.2.1,fc-3.2.2,fh-3.1.2,r-2.1.0,sc-1.4.2,se-1.2.0/datatables.min.js"></script>#}
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/u/zf-5.5.2/jqc-1.12.3,dt-1.10.12/datatables.min.js"></script>
 {% endblock %}
 
 {% block content %}

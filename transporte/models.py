@@ -2,6 +2,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.db import models as models
 from django.db.models import *
+from django.utils.timezone import now
 from django.utils.translation import ugettext as _
 from django_extensions.db import fields as extension_fields
 from djchoices import DjangoChoices, ChoiceItem
@@ -16,7 +17,6 @@ class TipoDeVehiculo(models.Model):
     costo_por_km = DecimalField(max_digits=10, decimal_places=2)
     capacidad_nominal = IntegerField()
     capacidad_real = IntegerField()
-    chofer_fijo = BooleanField()
     activo = BooleanField(default=True)
     creado = DateTimeField(auto_now_add=True, editable=False)
     actualizado = models.DateTimeField(auto_now=True, editable=False)
@@ -243,8 +243,8 @@ class Cotizacion(models.Model):
     # Fields
     nombre = models.CharField(max_length=100)
     slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
-    fecha_vence = models.DateField()
-    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha_vence = models.DateField(default=now)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     markup = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     creado = models.DateTimeField(auto_now_add=True, editable=False)
@@ -280,15 +280,15 @@ class CotizacionDetalle(models.Model):
     _monto = models.DecimalField(max_digits=10, decimal_places=2, db_column="monto")
     markup = models.DecimalField(max_digits=5, decimal_places=2)
     _total = models.DecimalField(max_digits=10, decimal_places=2, db_column="total")
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    creado = models.DateTimeField(auto_now_add=True, editable=False)
+    actualizado = models.DateTimeField(auto_now=True, editable=False)
 
     # Relationship Fields
     cotizacion = models.ForeignKey(Cotizacion, on_delete=CASCADE, verbose_name='cotizacion')
     item = models.ManyToManyField(Item, verbose_name='item')
 
     class Meta:
-        ordering = ('-created',)
+        ordering = ('-creado',)
         verbose_name = _('Detalle de Cotización')
         verbose_name_plural = _('Detalles de Cotización')
 
@@ -319,3 +319,29 @@ class CotizacionDetalle(models.Model):
 
     def get_update_url(self):
         return reverse('transporte_cotizaciondetalle_update', args=(self.slug,))
+
+
+class Vehiculo(models.Model):
+    # Fields
+    nombre = models.CharField(max_length=5)
+    placa = models.CharField(max_length=10)
+    chofer_fijo = BooleanField()
+    fecha_adquirido = models.DateField(null=True, blank=True)
+    slug = extension_fields.AutoSlugField(populate_from='nombre', blank=True)
+    creado = models.DateTimeField(auto_now_add=True, editable=False)
+    actualizado = models.DateTimeField(auto_now=True, editable=False)
+
+    # Relationship Fields
+    tipo = models.ForeignKey(TipoDeVehiculo, on_delete=CASCADE, verbose_name='tipo')
+
+    class Meta:
+        ordering = ('-creado',)
+
+    def __unicode__(self):
+        return u'%s' % self.slug
+
+    def get_absolute_url(self):
+        return reverse('transporte_vehiculo_detail', args=(self.slug,))
+
+    def get_update_url(self):
+        return reverse('transporte_vehiculo_update', args=(self.slug,))

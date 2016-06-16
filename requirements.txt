@@ -1,0 +1,12 @@
+Django==1.9.7
+django-crispy-forms==1.6.0
+djangorestframework==3.3.3
+django-extensions==1.6.1
+django-choices==1.4.2
+django-datetime-widget==0.9.3
+django-debug-toolbar==1.4
+django-bootstrap3==7.0.1
+googlemaps==2.4.3
+django-happenings==0.3.3
+
+

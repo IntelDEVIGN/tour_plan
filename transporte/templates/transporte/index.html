@@ -9,12 +9,13 @@
         <p>Bienvenido Invitado!</p>
     {% endif %}
     <main>
-        <h1>{{ tipodevehiculoes.count }} tipodevehiculo(es)</h1>
-        {% for tipodevehiculo in tipodevehiculoes %}
-            <h2>{{ tipodevehiculo.nombre }}</h2>
-            {{ tipodevehiculo.costo_por_dia }}
+        <h1>{{ tipos_de_vehiculo.count }} Tipos de Vehículo</h1>
+        {% for tipos_de_vehiculo in tipos_de_vehiculo %}
+            <p><strong>{{ tipos_de_vehiculo.nombre }}</strong> {{ tipos_de_vehiculo.costo_por_dia }}</p>
         {% endfor %}
     </main>
+{% endblock %}
+{% block scripts %}
     <script>
         $(document).ready(function () {
             $('#backbutton').hide();

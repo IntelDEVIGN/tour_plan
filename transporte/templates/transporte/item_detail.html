@@ -1,7 +1,7 @@
 {% extends "_detail.html" %}
 {% load humanize %}
-{% block title %}Detalle de Itinerario{% endblock %}
-{% block page-title %}Detalle de Itinerario{% endblock %}
+{% block title %}Detalle de Item{% endblock %}
+{% block page-title %}Detalle de Item{% endblock %}
 {% block thead %}
     <th class="derecha">Item</th>
     <th class="izquierda">{{ item.nombre }}</th>
@@ -45,6 +45,6 @@
     </tr>
 {% endblock %}
 {% block footer %}
-    <a href="{{ item.get_update_url }}" class="boton ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
-        Item</a>
+    <a href="{{ item.get_update_url }}"
+       class="ui-btn ui-btn-c ui-btn-inline ui-shadow ui-link ui-icon-edit ui-btn-icon-left">Editar Item</a>
 {% endblock %}

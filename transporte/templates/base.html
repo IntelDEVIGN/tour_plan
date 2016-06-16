@@ -9,29 +9,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% block description %}{% endblock %}">
     <meta name="author" content="Adalberto H. Vega">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
-    <script type="application/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    {% block extlibs %}
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700'>
+
+    <!-- flat-ui -->
+    <link rel='stylesheet' href="{% static "flat-ui/jquery.mobile.flatui.css" %}"/>
+    <link rel='stylesheet' href="{% static "themes/jquery.mobile.icons.min.css" %}"/>
+    <link rel='stylesheet' href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css"/>
+
+    <!-- material admin -->
+    {#    <link href="/static/material/css/materialize.css" rel="stylesheet">#}
+    {#    <link href="/static/material/css/material-design-iconic-font.css" rel="stylesheet">#}
+
+    {#    <link href="/static/material/css/responsive.dataTables.css" rel="stylesheet">#}
+    {#    <link href="/static/material/css/forms.css" rel="stylesheet">#}
+    {#    <link rel="stylesheet" type="text/css" href="/static/material/admin/css/base.css"/>#}
+
+    {#    <link rel='stylesheet' href="{% static "themes/travel-plan.min.css" %}"/>#}
+
+    <link rel='stylesheet' href="{% static "css/layout.css" %}">
+
+    {#        <script src="/static/material/js/jquery-2.2.0.js"></script>#}
+    {#        <script>#}
+    {#            var jQuery    = "../../static/admin/js/jquery.js";#}
+    {#            // Use same django for material and django admin#}
+    {#            var django    = django || {};#}
+    {#            django.jQuery = jQuery.noConflict(true);#}
+    {#            window.jQuery = window.$ = django.jQuery#}
+    {#        </script>#}
+
+    <!-- end material admin -->
+
+    {% block extcss %}
     {% endblock %}
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
-    <link rel="stylesheet" href="{% static "css/layout.css" %}">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
+
 </head>
 <body>
 <div data-role="page" class="ui-responsive-panel" id="{% block page-id %}Home{% endblock %}">
-    <div data-role="header" data-position="fixed"><h1>{% block page-title %}title{% endblock %}</h1>
+    {#    <div data-role="header" data-position="fixed">#}
+    <div class="ui-header ui-bar-b" role="banner" data-role="header" data-theme="b" data-tap-toggle="false">
+        <h1>{% block page-title %}title{% endblock %}</h1>
         <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
         <a href="javascript:history.back()" data-icon="arrow-l" id="backbutton" data-iconpos="notext">Back</a>
     </div><!-- /header -->
     <div data-role="content">
         {% block content %}{% endblock %}
     </div>
-    <div data-role="panel" data-display="overlay" data-theme="a" id="nav-panel">
+    <div data-role="panel" data-display="overlay" data-theme="b" id="nav-panel" style="width: 200px">
         <ul data-role="listview">
             <li data-icon="delete"><a href="#" data-rel="close">Cerrar menu</a></li>
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'transporte_parametro_list' %}">Parámetros</a></li>
             <li><a href="{% url 'transporte_tipodevehiculo_list' %}">Tipos de Vehículo</a></li>
+            <li><a href="{% url 'transporte_vehiculo_list' %}">Vehículos</a></li>
             <li><a href="{% url 'transporte_niveldeprecio_list' %}">Niveles de Precio</a></li>
             <li><a href="{% url 'transporte_item_list' %}">Items</a></li>
             <li><a href="{% url 'transporte_cliente_list' %}">Clientes</a></li>
@@ -40,11 +69,35 @@
             <li><a href="{% url 'transporte_cotizacion_list' %}">Cotizaciones</a></li>
         </ul>
     </div><!-- /panel -->
-    <div data-role="footer" data-position="fixed">
+    <div data-role="footer" data-position="fixed" data-theme="b">
         {% block footer %}{% endblock %}
     </div>
 </div>
+
+<!-- material admin -->
+{#<script src="/static/material/js/jquery.datetimepicker.js"></script>#}
+{#<script src="/static/material/js/jquery.formset.js"></script>#}
+{#<script src="/static/material/js/jquery.dataTables.min.js"></script>#}
+{#<script src="/static/material/js/dataTables.responsive.js"></script>#}
+{#<script src="/static/material/js/dataTables.fixedHeader.js"></script>#}
+{#<script src="/static/material/js/materialize.js"></script>#}
+{#<script src="/static/material/js/material_init.js"></script>#}
+<!-- end material admin -->
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+{#<script src="{% static "flat-ui/js/jquery.js" %}"></script>#}
+{#<script src="{% static "flat-ui/js/jquery.mobile-1.4.0-rc.1.js" %}"></script>#}
+{#        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>#}
+
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+{#        <script src="{% static "material-ui/js/jquery.material.theme.js" %}"></script>#}
+
+{% block extlibs %}
+{% endblock %}
 {% block scripts %}
-    replace
+{% endblock %}
+{% block scripts2 %}
 {% endblock %}
 </body>

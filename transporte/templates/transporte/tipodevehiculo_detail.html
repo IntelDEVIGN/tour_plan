@@ -28,10 +28,6 @@
         <td><strong>{{ tipodevehiculo.capacidad_real }}</strong></td>
     </tr>
     <tr>
-        <td class="derecha">Chofer Fijo?</td>
-        <td><strong>{{ tipodevehiculo.chofer_fijo|yesno }}</strong></td>
-    </tr>
-    <tr>
         <td class="derecha">Activo?</td>
         <td><strong>{{ tipodevehiculo.activo|yesno }}</strong></td>
     </tr>
@@ -45,6 +41,7 @@
     </tr>
 {% endblock %}
 {% block footer %}
-    <a href="{{ tipodevehiculo.get_update_url }}" class="boton ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+    <a href="{{ tipodevehiculo.get_update_url }}"
+       class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-edit ui-btn-icon-left">Editar
         Tipo de Vehículo</a>
 {% endblock %}

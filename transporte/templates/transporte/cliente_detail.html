@@ -15,12 +15,14 @@
     <tr>
         <td class="derecha">Tel</td>
         <td><a title="Llamar" href="tel:{{ cliente.tel }}"
-               class="boton ui-link ui-btn ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a></td>
+               class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-phone">{{ cliente.tel }}</a>
+        </td>
     </tr>
     <tr>
         <td class="derecha">Email</td>
         <td><a title="Enviar email" href="mailto:{{ cliente.email }}"
-               class="boton ui-link ui-btn ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a></td>
+               class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-mail">{{ cliente.email }}</a>
+        </td>
     </tr>
     <tr>
         <td class="derecha">Nivel de Precio</td>
@@ -36,6 +38,7 @@
     </tr>
 {% endblock %}
 {% block footer %}
-    <a href="{{ cliente.get_update_url }}" class="boton ui-link ui-btn ui-icon-edit ui-btn-icon-left">Editar
+    <a href="{{ cliente.get_update_url }}"
+       class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-edit">Editar
         Cliente</a>
 {% endblock %}

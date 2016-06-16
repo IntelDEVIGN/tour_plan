@@ -1,23 +1,26 @@
 {% extends "base.html" %}
+
 {% load bootstrap3 %}
 {% block extlibs %}
 {% endblock %}
 {% block content %}
     <div style="padding: 4px">
-        <form id="myform" method="post" class="form">
+        <form id="laforma" method="post" class="form form-horizontal">
             {% csrf_token %}
             {% bootstrap_form form %}
         </form>
     </div>
 {% endblock %}
 {% block footer %}
-    <button id="submit" class="boton ui-link ui-btn ui-icon-check ui-btn-icon-left"
+    <button id="submit"
+            class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-check ui-btn-icon-left"
             type="submit">Guardar {% block page-title %}Titulo{% endblock %}
     </button>
+{% endblock %}
+{% block scripts2 %}
     <script>
         $("#submit").click(function () {
-            $("#myform").submit();
+            $("#laforma").submit();
         });
     </script>
 {% endblock %}
-{% block scripts %}{% endblock %}

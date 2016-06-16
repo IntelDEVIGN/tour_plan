@@ -16,11 +16,12 @@ router.register(r'cotizacion', api.CotizacionViewSet)
 router.register(r'cliente', api.ClienteViewSet)
 router.register(r'itinerario', api.ItinerarioViewSet)
 router.register(r'cotizaciondetalle', api.CotizacionDetalleViewSet)
+router.register(r'vehiculo', api.VehiculoViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', indice, name='home'),
-    url(r'^calendar/', include('happenings.urls', namespace='calendar')),
+    # url(r'^calendar/', include('happenings.urls', namespace='calendar')),
     url(r'^tabla/$', views.ItinerarioDataTable.as_view(), name='transporte_itinerario_table'),
 ]
 
@@ -120,4 +121,14 @@ urlpatterns += [
         views.CotizacionDetalleDetailView.as_view(), name='transporte_cotizaciondetalle_detail'),
     url(r'^transporte/cotizaciondetalle/update/(?P<slug>\S+)/$',
         views.CotizacionDetalleUpdateView.as_view(), name='transporte_cotizaciondetalle_update'),
+]
+
+urlpatterns += [
+    # urls for Vehiculo
+    url(r'^transporte/vehiculo/$', views.VehiculoListView.as_view(), name='transporte_vehiculo_list'),
+    url(r'^transporte/vehiculo/create/$', views.VehiculoCreateView.as_view(), name='transporte_vehiculo_create'),
+    url(r'^transporte/vehiculo/detail/(?P<slug>\S+)/$', views.VehiculoDetailView.as_view(),
+        name='transporte_vehiculo_detail'),
+    url(r'^transporte/vehiculo/update/(?P<slug>\S+)/$', views.VehiculoUpdateView.as_view(),
+        name='transporte_vehiculo_update'),
 ]

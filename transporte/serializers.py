@@ -14,10 +14,9 @@ class TipoDeVehiculoSerializer(serializers.ModelSerializer):
             'actualizado', 
             'rendimiento', 
             'costo_por_dia', 
-            'costo_por_km', 
-            'capacidad_nominal', 
-            'capacidad_real', 
-            'chofer_fijo', 
+            'costo_por_km',
+            'capacidad_nominal',
+            'capacidad_real',
         )
 
 
@@ -119,15 +118,29 @@ class CotizacionDetalleSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CotizacionDetalle
         fields = (
-            'slug', 
-            'descripcion', 
-            'created', 
-            'last_updated', 
+            'slug',
+            'descripcion',
+            'creado',
+            'actualizado', 
             'cantidad', 
             'markup', 
             'precio', 
-            'monto', 
-            'total', 
+            'monto',
+            'total',
+        )
+
+
+class VehiculoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Vehiculo
+        fields = (
+            'slug',
+            'nombre',
+            'chofer_fijo',
+            'fecha_adquirido',
+            'creado',
+            'actualizado',
+            'placa',
         )
 
 
