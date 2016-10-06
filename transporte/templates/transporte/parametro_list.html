@@ -1,24 +1,16 @@
 {% extends "_list.html" %}
 {% load humanize %}
 {% block title %}Parámetros{% endblock %}
-{% block page-title %}Parámetros{% endblock %}
-{% block thead %}
+{% block page-title %}Parámetros{% endblock %}{% block thead %}
     <th class="center">Parámetro</th>
     <th data-priority="1" class="derecha">Valor</th>
-    <th data-priority="2" class="izquierda">Unidad</th>
-{% endblock %}
-{% block tbody %}
-    {% for parametro in object_list %}
-        <tr>
-            <td data-search="{{ parametro.nombre }}"><a class="ui-btn ui-link boton"
-                                                        href="{{ parametro.get_absolute_url }}">{{ parametro.nombre }}</a>
-            </td>
-            <td class="derecha">{{ parametro.valor }}</td>
-            <td class="izquierda">{{ parametro.unidad }}</td>
-        </tr>
-    {% endfor %}
-{% endblock %}
-{% block footer %}
+    <th data-priority="2" class="izquierda">Unidad</th>{% endblock %}{% block tbody %}{% for parametro in object_list %}
+    <tr>
+        <td data-search="{{ parametro.nombre }}">
+            <a class="ui-btn ui-link boton" href="{{ parametro.get_absolute_url }}">{{ parametro.nombre }}</a>
+        </td>
+        <td class="derecha">{{ parametro.valor }}</td>
+        <td class="izquierda">{{ parametro.unidad }}</td>
+    </tr>{% endfor %}{% endblock %}{% block footer %}
     <a class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-plus ui-btn-icon-left"
-       href="{% url "transporte_parametro_create" %}">Agregar Nuevo Parámetro</a>
-{% endblock %}
+       href="{% url "transporte_parametro_create" %}">Agregar Nuevo Parámetro</a>{% endblock %}

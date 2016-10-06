@@ -1,8 +1,8 @@
 import googlemaps
 
-gmaps = googlemaps.Client(key='AIzaSyBOrNenPw7m-lY19t3cUfn_dJfpz5tqmv8')
+gmaps = googlemaps.Client(key='AIzaSyBbYU7-6GDjiGSWrpw5a1xKd1AUJMX5lnU')
 
-map_directions = gmaps.directions('San Pedro Sula, Honduras', 'Santa Tecla, El Salvador', language='es')
+map_directions = gmaps.directions('San Pedro Sula, Honduras', 'Copan Ruinas, Honduras', language='es')
 
 print(map_directions[0]['legs'][0]['start_address'])
 print(map_directions[0]['legs'][0]['end_address'])

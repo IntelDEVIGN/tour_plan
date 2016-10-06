@@ -1,16 +1,13 @@
 {% extends "_list.html" %}
 {% load humanize %}
 {% block title %}Cotizaciones{% endblock %}
-{% block page-title %}Cotizaciones{% endblock %}
-{% block thead %}
+{% block page-title %}Cotizaciones{% endblock %}{% block thead %}
     <th data-priority="9" class="derecha">#</th>
     <th class="izquierda">Cotización</th>
     <th data-priority="1" class="centrado">Vence</th>
     <th data-priority="3" class="derecha">Subtotal</th>
     <th data-priority="4" class="derecha">Margen</th>
-    <th data-priority="2" class="derecha">Total</th>
-{% endblock %}
-{% block tbody %}
+    <th data-priority="2" class="derecha">Total</th>{% endblock %}{% block tbody %}
     {% for cotizacion in cotizacion_list %}
         <tr>
             <td class="izquierda">{{ cotizacion.id }}</td>
@@ -21,10 +18,6 @@
             <td class="derecha">{{ cotizacion.subtotal|intcomma }}</td>
             <td class="derecha">{{ cotizacion.markup|intcomma }}</td>
             <td class="derecha">{{ cotizacion.total|intcomma }}</td>
-        </tr>
-    {% endfor %}
-{% endblock %}
-{% block footer %}
+        </tr>{% endfor %}{% endblock %}{% block footer %}
     <a class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-plus ui-btn-icon-left"
-       href="{% url "transporte_cotizacion_create" %}">Agregar Nueva Cotización</a>
-{% endblock %}
+       href="{% url "transporte_cotizacion_create" %}">Agregar Nueva Cotización</a>{% endblock %}

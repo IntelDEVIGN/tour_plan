@@ -1,12 +1,9 @@
 {% extends "_detail.html" %}
 {% load humanize %}
 {% block title %}Detalle de Parámetro{% endblock %}
-{% block page-title %}Detalles de Parámetro{% endblock %}
-{% block thead %}
+{% block page-title %}Detalles de Parámetro{% endblock %}{% block thead %}
     <th class="derecha">Parámetro</th>
-    <th>{{ parametro.nombre }}</th>
-{% endblock %}
-{% block tbody %}
+    <th>{{ parametro.nombre }}</th>{% endblock %}{% block tbody %}
     <tr>
         <td class="derecha">Valor</td>
         <td><strong>{{ parametro.valor }}</strong></td>
@@ -26,10 +23,7 @@
     <tr>
         <td class="derecha">Actualizado</td>
         <td><strong>{{ parametro.ultima_actualizacion|date:'D d/M/Y' }}</strong></td>
-    </tr>
-{% endblock %}
-{% block footer %}
+    </tr>{% endblock %}{% block footer %}
     <a href="{{ parametro.get_update_url }}"
        class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-edit ui-btn-icon-left">Editar
-        Parámetro</a>
-{% endblock %}
+        Parámetro</a>{% endblock %}

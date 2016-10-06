@@ -1,26 +1,19 @@
 {% extends "_list.html" %}
 {% load humanize %}
 {% block title %}Vehículos{% endblock %}
-{% block page-title %}Vehículos{% endblock %}
-{% block thead %}
+{% block page-title %}Vehículos{% endblock %}{% block thead %}
     <th class="center">Vehículos</th>
     <th data-priority="1" class="derecha">Placa</th>
     <th data-priority="2" class="derecha">Creado</th>
-    <th data-priority="3" class="derecha">Actualizado</th>
-{% endblock %}
-{% block tbody %}
+    <th data-priority="3" class="derecha">Actualizado</th>{% endblock %}{% block tbody %}
     {% for vehiculo in vehiculo_list %}
         <tr>
-            <td data-search="{{ vehiculo.nombre }}"><a class="ui-btn ui-link boton"
-                                                       href="{{ vehiculo.get_absolute_url }}">{{ vehiculo.nombre }}</a>
+            <td data-search="{{ vehiculo.nombre }}">
+                <a class="ui-btn ui-link boton" href="{{ vehiculo.get_absolute_url }}">{{ vehiculo.nombre }}</a>
             </td>
             <td class="derecha">{{ vehiculo.placa }}</td>
             <td class="derecha">{{ vehiculo.creado|date:"D d/b" }}</td>
             <td class="derecha">{{ vehiculo.actualizado|date:"D d/b" }}</td>
-        </tr>
-    {% endfor %}
-{% endblock %}
-{% block footer %}
+        </tr>{% endfor %}{% endblock %}{% block footer %}
     <a class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-plus ui-btn-icon-left"
-       href="{% url "transporte_vehiculo_create" %}">Agregar Nuevo Vehículo</a>
-{% endblock %}
+       href="{% url "transporte_vehiculo_create" %}">Agregar Nuevo Vehículo</a>{% endblock %}

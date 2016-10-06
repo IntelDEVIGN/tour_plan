@@ -7,25 +7,21 @@
     <th class="centrado">Cliente</th>
     <th data-priority="1" class="centrado">Contacto</th>
     <th data-priority="2" class="centrado">Tel</th>
-    <th data-priority="3" class="centrado">Email</th>
-{% endblock %}
-{% block tbody %}
-    {% for cliente in cliente_list %}
-        <tr>
-            <td data-search="{{ cliente.nombre }}"><a title="Ver Detalles" class="ui-btn ui-link boton"
-                                                      href="{{ cliente.get_absolute_url }}">{{ cliente.nombre }}</a>
-            </td>
-            <td class="centrado">{{ cliente.contacto }}</td>
-            <td class="centrado"><a title="Llamar" href="tel:{{ cliente.tel }}"
-                                    class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-phone ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a>
-            </td>
-            <td class="izquierda"><a title="Enviar email" href="mailto:{{ cliente.email }}"
-                                     class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a>
-            </td>
-        </tr>
-    {% endfor %}
-{% endblock %}
-{% block footer %}
+    <th data-priority="3" class="centrado">Email</th>{% endblock %}{% block tbody %}{% for cliente in cliente_list %}
+    <tr>
+        <td data-search="{{ cliente.nombre }}">
+            <a title="Ver Detalles" class="ui-btn ui-link boton"
+               href="{{ cliente.get_absolute_url }}">{{ cliente.nombre }}</a>
+        </td>
+        <td class="centrado">{{ cliente.contacto }}</td>
+        <td class="centrado">
+            <a title="Llamar" href="tel:{{ cliente.tel }}"
+               class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-phone ui-icon-phone ui-btn-icon-left">{{ cliente.tel }}</a>
+        </td>
+        <td class="izquierda">
+            <a title="Enviar email" href="mailto:{{ cliente.email }}"
+               class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-mail ui-btn-icon-left">{{ cliente.email }}</a>
+        </td>
+    </tr>{% endfor %}{% endblock %}{% block footer %}
     <a class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-plus ui-btn-icon-left"
-       href="{% url "transporte_cliente_create" %}">Agregar Nuevo Cliente</a>
-{% endblock %}
+       href="{% url "transporte_cliente_create" %}">Agregar Nuevo Cliente</a>{% endblock %}

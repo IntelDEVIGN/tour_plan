@@ -2,32 +2,23 @@
 {% load humanize %}
 {% load porcentaje %}
 {% block title %}Niveles de Precio{% endblock %}
-{% block page-title %}Niveles de Precio{% endblock %}
-{% block thead %}
+{% block page-title %}Niveles de Precio{% endblock %}{% block thead %}
     <th class="centrado">Nivel de Precio</th>
     <th data-priority="1" class="centrado">Tipo</th>
     <th data-priority="2" class="centrado">Acción</th>
     <th data-priority="3" class="centrado">Valor</th>
-    <th data-priority="4" class="centrado">Factor</th>
-{% endblock %}
-{% block tbody %}
+    <th data-priority="4" class="centrado">Factor</th>{% endblock %}{% block tbody %}
     {% for niveldeprecio in niveldeprecio_list %}
         <tr>
-            <td data-search="{{ niveldeprecio.nombre }}"><a class="ui-btn ui-link boton"
-                                                            href="{{ niveldeprecio.get_absolute_url }}">{{ niveldeprecio.nombre }}</a>
+            <td data-search="{{ niveldeprecio.nombre }}">
+                <a class="ui-btn ui-link boton"
+                   href="{{ niveldeprecio.get_absolute_url }}">{{ niveldeprecio.nombre }}</a>
             </td>
             <td class="centrado">{{ niveldeprecio.get_tipo_display }}</td>
-            <td class="centrado">{{ niveldeprecio.get_accion_display }}</td>
-            {% if niveldeprecio.tipo == "Porcentaje" %}
-                <td class="centrado">{{ niveldeprecio.valor|porciento }}</td>
-            {% else %}
-                <td class="centrado">{{ niveldeprecio.valor }}</td>
-            {% endif %}
+            <td class="centrado">{{ niveldeprecio.get_accion_display }}</td>{% if niveldeprecio.tipo == "Porcentaje" %}
+            <td class="centrado">{{ niveldeprecio.valor|porciento }}</td>{% else %}
+            <td class="centrado">{{ niveldeprecio.valor }}</td>{% endif %}
             <td class="centrado">{{ niveldeprecio.factor|floatformat:6 }}</td>
-        </tr>
-    {% endfor %}
-{% endblock %}
-{% block footer %}
+        </tr>{% endfor %}{% endblock %}{% block footer %}
     <a class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-plus ui-btn-icon-left"
-       href="{% url "transporte_niveldeprecio_create" %}">Agregar Nivel de Precio</a>
-{% endblock %}
+       href="{% url "transporte_niveldeprecio_create" %}">Agregar Nivel de Precio</a>{% endblock %}

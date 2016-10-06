@@ -1,37 +1,38 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_itinerario_list' %}">Itinerario Listing</a></p>
-<table class="table">
+{% extends "_detail.html" %}
+{% load humanize %}
+{% block title %}Detalle de Itinerario{% endblock %}
+{% block page-title %}Detalle de Itinerario{% endblock %}
+{% block thead %}
+    <th class="derecha">Itinerario</th>
+    <th class="izquierda">{{ itinerario.nombre }}</th>
+{% endblock %}
+{% block tbody %}
     <tr>
-        <td>nombre</td>
-        <td>{{ itinerario.nombre }}</td>
+        <td class="derecha">Inicia</td>
+        <td><strong>{{ itinerario.fecha_desde|date:"D d/b" }}</strong></td>
     </tr>
     <tr>
-        <td>slug</td>
-        <td>{{ itinerario.slug }}</td>
+        <td class="derecha">Termina</td>
+        <td><strong>{{ itinerario.fecha_desde|date:"D d/b" }}</strong></td>
     </tr>
     <tr>
-        <td>creado</td>
-        <td>{{ itinerario.creado }}</td>
+        <td class="derecha">Estatus</td>
+        <td><strong>{{ itinerario.get_estatus_display }}</strong></td>
     </tr>
     <tr>
-        <td>actualizado</td>
-        <td>{{ itinerario.actualizado }}</td>
+        <td class="derecha">Slug</td>
+        <td><strong>{{ itinerario.slug }}</strong></td>
     </tr>
     <tr>
-        <td>fecha_desde</td>
-        <td>{{ itinerario.fecha_desde|date:"D d/b" }}</td>
+        <td class="derecha">Creado</td>
+        <td><strong>{{ itinerario.creado }}</strong></td>
     </tr>
     <tr>
-        <td>fecha_hasta</td>
-        <td>{{ itinerario.fecha_hasta|date:"D d/b" }}</td>
+        <td class="derecha">Actualizado</td>
+        <td><strong>{{ itinerario.actualizado }}</strong></td>
     </tr>
-    <tr>
-        <td>estatus</td>
-        <td>{{ itinerario.get_estatus_display }}</td>
-    </tr>
-</table>
-    <a class="btn btn-primary" href="{{ itinerario.get_update_url }}">Edit Itinerario</a>
-
+{% endblock %}
+{% block footer %}
+    <a href="{{ itinerario.get_update_url }}"
+       class="ui-btn ui-btn-c ui-btn-inline ui-shadow ui-link ui-icon-edit ui-btn-icon-left">Editar Itinerario</a>
 {% endblock %}

@@ -2,12 +2,9 @@
 {% load humanize %}
 {% load bootstrap3 %}
 {% block title %}Detalle de Cliente{% endblock %}
-{% block page-title %}Detalle de Cliente{% endblock %}
-{% block thead %}
+{% block page-title %}Detalle de Cliente{% endblock %}{% block thead %}
     <th class="derecha">Cliente</th>
-    <th class="izquierda">{{ cliente.nombre }}</th>
-{% endblock %}
-{% block tbody %}
+    <th class="izquierda">{{ cliente.nombre }}</th>{% endblock %}{% block tbody %}
     <tr>
         <td class="derecha">Contacto</td>
         <td><strong>{{ cliente.contacto }}</strong></td>
@@ -35,10 +32,7 @@
     <tr>
         <td class="derecha">Actualizado</td>
         <td><strong>{{ cliente.actualizado|date:'D d/M/Y' }}</strong></td>
-    </tr>
-{% endblock %}
-{% block footer %}
+    </tr>{% endblock %}{% block footer %}
     <a href="{{ cliente.get_update_url }}"
        class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-edit">Editar
-        Cliente</a>
-{% endblock %}
+        Cliente</a>{% endblock %}
