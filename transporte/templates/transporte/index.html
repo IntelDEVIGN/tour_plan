@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% block title %}Inicio{% endblock %}
 {% block page-title %}Inicio{% endblock %}
 {% block content %}
@@ -11,7 +12,7 @@
     <main>
         <h1>{{ tipos_de_vehiculo.count }} Tipos de Vehículo</h1>
         {% for tipos_de_vehiculo in tipos_de_vehiculo %}
-            <p><strong>{{ tipos_de_vehiculo.nombre }}</strong> {{ tipos_de_vehiculo.costo_por_dia }}</p>
+            <p><strong>{{ tipos_de_vehiculo.nombre }}</strong> {{ tipos_de_vehiculo.costo_por_dia|intcomma }}</p>
         {% endfor %}
     </main>
 {% endblock %}

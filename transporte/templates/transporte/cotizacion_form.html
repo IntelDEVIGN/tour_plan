@@ -1,4 +1,4 @@
-{% extends "_form.html" %}
+{% extends "_form.html" %}{% load staticfiles %}
 {% block title %}Cotización{% endblock %}
 {% block page-title %}Cotización{% endblock %}
 
@@ -14,8 +14,10 @@
 
 {% block scripts %}
     <script>
-        $(function () {
+        $(document).ready(function () {
             $('#id_fecha_vence').datepicker();
         });
     </script>
 {% endblock %}
+{% block scripts %}
+    <script src="{% static "js/submit_form.js" %}"></script>{% endblock %}
