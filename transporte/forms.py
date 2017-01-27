@@ -5,14 +5,14 @@ from django import forms
 from django.forms.utils import ErrorList
 
 from .models import TipoDeVehiculo, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
-    CotizacionDetalle, Vehiculo
+    CotizacionDetalle, Vehiculo, Tramo, Lugar, Conductor
 
 
 class TipoDeVehiculoForm(forms.ModelForm):
     class Meta:
         model = TipoDeVehiculo
         fields = ['nombre', 'rendimiento', 'costo_por_dia', 'costo_por_km', 'capacidad_nominal', 'capacidad_real',
-                  'activo']
+                  'galones_tanque', 'activo']
 
 
 class ParametroForm(forms.ModelForm):
@@ -76,3 +76,22 @@ class VehiculoForm(forms.ModelForm):
     class Meta:
         model = Vehiculo
         fields = ['nombre', 'placa', 'tipo', 'chofer_fijo', 'fecha_adquirido']
+
+
+class TramoForm(forms.ModelForm):
+    class Meta:
+        model = Tramo
+        fields = ['nombre', 'codigo', 'desde_hacia', 'kms', 'hrs', 'codigo_desde', 'codigo_hacia', 'desde_lugar',
+                  'hacia_lugar']
+
+
+class LugarForm(forms.ModelForm):
+    class Meta:
+        model = Lugar
+        fields = ['codigo', 'nombre', 'pais']
+
+
+class ConductorForm(forms.ModelForm):
+    class Meta:
+        model = Conductor
+        fields = ['nombre', 'identidad', 'telefono', 'empleado', 'incentivo_por_dia']

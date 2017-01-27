@@ -1,9 +1,7 @@
-from django import forms
 from django.contrib import admin
 from django.forms.utils import ErrorList
 
-from .models import TipoDeVehiculo, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, CotizacionDetalle, \
-    Vehiculo
+from .models import *
 
 
 class TipoDeVehiculoAdminForm(forms.ModelForm):
@@ -14,7 +12,15 @@ class TipoDeVehiculoAdminForm(forms.ModelForm):
 
 class TipoDeVehiculoAdmin(admin.ModelAdmin):
     form = TipoDeVehiculoAdminForm
-    list_display = ['nombre', 'rendimiento', 'costo_por_dia', 'costo_por_km', 'capacidad_nominal', 'capacidad_real']
+    list_display = [
+        'nombre',
+        'rendimiento',
+        'costo_por_dia',
+        'costo_por_km',
+        'capacidad_nominal',
+        'capacidad_real',
+        'galones_tanque'
+    ]
     readonly_fields = ['creado', 'actualizado', 'slug']
     search_fields = ['nombre']
 
@@ -30,7 +36,13 @@ class ParametroAdminForm(forms.ModelForm):
 
 class ParametroAdmin(admin.ModelAdmin):
     form = ParametroAdminForm
-    list_display = ['annio', 'nombre', 'valor', 'unidad', 'orden']
+    list_display = [
+        'annio',
+        'nombre',
+        'valor',
+        'unidad',
+        'orden'
+    ]
     readonly_fields = ['creado', 'actualizado', 'slug']
     search_fields = ['nombre']
     list_filter = ['annio']
@@ -47,7 +59,14 @@ class ItemAdminForm(forms.ModelForm):
 
 class ItemAdmin(admin.ModelAdmin):
     form = ItemAdminForm
-    list_display = ['nombre', 'tipo_item', 'unidad', 'costo', 'precio', 'descripcion_venta']
+    list_display = [
+        'nombre',
+        'tipo_item',
+        'unidad',
+        'costo',
+        'precio',
+        'descripcion_venta'
+    ]
     readonly_fields = ['slug', 'creado', 'actualizado']
     search_fields = ['nombre', 'descripcion_compra', 'descripcion_venta']
 
@@ -160,3 +179,80 @@ class VehiculoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Vehiculo, VehiculoAdmin)
+
+
+class TramoAdminForm(forms.ModelForm):
+    class Meta:
+        model = Tramo
+        fields = '__all__'
+
+
+class TramoAdmin(admin.ModelAdmin):
+    form = TramoAdminForm
+    list_display = [
+        'nombre',
+        'slug',
+        'creado',
+        'actualizado',
+        'codigo',
+        'desde_hacia',
+        'kms',
+        'hrs',
+        'codigo_desde',
+        'codigo_hacia'
+    ]
+    readonly_fields = [
+        'slug',
+        'creado',
+        'actualizado',
+        'desde_hacia',
+        'kms',
+        'hrs'
+    ]
+
+
+admin.site.register(Tramo, TramoAdmin)
+
+
+class LugarAdminForm(forms.ModelForm):
+    class Meta:
+        model = Lugar
+        fields = '__all__'
+
+
+class LugarAdmin(admin.ModelAdmin):
+    form = LugarAdminForm
+    list_display = ['codigo', 'slug', 'creado', 'actualizado', 'nombre', 'pais']
+    readonly_fields = ['slug', 'creado', 'actualizado']
+
+
+admin.site.register(Lugar, LugarAdmin)
+
+
+class ConductorAdminForm(forms.ModelForm):
+    class Meta:
+        model = Conductor
+        fields = '__all__'
+
+
+class ConductorAdmin(admin.ModelAdmin):
+    form = ConductorAdminForm
+    list_display = [
+        'nombre',
+        'slug',
+        'creado',
+        'actualizado',
+        'identidad',
+        'telefono',
+        'empleado',
+        'incentivo_por_dia'
+    ]
+    readonly_fields = [
+        'nombre',
+        'slug',
+        'creado',
+        'actualizado'
+    ]
+
+
+admin.site.register(Conductor, ConductorAdmin)

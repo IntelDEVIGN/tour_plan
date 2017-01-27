@@ -74,3 +74,27 @@ class VehiculoViewSet(viewsets.ModelViewSet):
     queryset = models.Vehiculo.objects.all()
     serializer_class = serializers.VehiculoSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class TramoViewSet(viewsets.ModelViewSet):
+    """ViewSet for the Tramo class"""
+
+    queryset = models.Tramo.objects.all()
+    serializer_class = serializers.TramoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class LugarViewSet(viewsets.ModelViewSet):
+    """ViewSet for the Lugar class"""
+
+    queryset = models.Lugar.objects.all()
+    serializer_class = serializers.LugarSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class ConductorViewSet(viewsets.ModelViewSet):
+    """ViewSet for the Conductor class"""
+
+    queryset = models.Conductor.objects.all()
+    serializer_class = serializers.ConductorSerializer
+    permission_classes = [permissions.IsAuthenticated]

@@ -1,18 +1,76 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-<p><a class="btn btn-default" href="{% url 'transporte_cotizacion_list' %}">Cotizacion Listing</a></p>
-<table class="table">
-<tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
-<tr><td>slug</td><td>{{ object.slug }}</td></tr>
-<tr><td>creado</td><td>{{ object.creado }}</td></tr>
-<tr><td>actualizado</td><td>{{ object.actualizado }}</td></tr>
+{% extends "_detail.html" %}
+{% load humanize %}
+{% block title %}Cotización{% endblock %}
+{% block page-title %}Detalle de Cotización{% endblock %}
+{% block thead %}
+    <th class="derecha">Cotización</th>
+    <th class="izquierda">{{ cotizacion.nombre }}</th>
+{% endblock %}
+{% block tbody %}
     <tr>
-        <td>fecha_vence</td>
-        <td>{{ object.fecha_vence|date:"D d/b" }}</td>
+        <td class="derecha">Vence</td>
+        <td><strong>{{ cotizacion.fecha_vence|date:"D d/b" }}</strong></td>
     </tr>
-<tr><td>subtotal</td><td>{{ object.subtotal }}</td></tr>
-<tr><td>markup</td><td>{{ object.markup }}</td></tr>
-<tr><td>total</td><td>{{ object.total }}</td></tr>
-</table>
-    <a class="btn btn-primary" href="{{ object.get_update_url }}">Edit Cotizacion</a>{% endblock %}
+    <tr>
+        <td class="derecha">Subtotal</td>
+        <td><strong>{{ cotizacion.subtotal|intcomma }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Markup</td>
+        <td><strong>{{ cotizacion.markup|intcomma }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Total</td>
+        <td><strong>{{ cotizacion.total|intcomma }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Creada</td>
+        <td><strong>{{ cotizacion.creado }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Actualizada</td>
+        <td><strong>{{ cotizacion.actualizado }}</strong></td>
+    </tr>
+{% endblock %}
+{% block detalle %}
+    <div class="form-group">
+        <form class="form">
+            <table data-role="table" id="table-list" data-mode="columntoggle"
+                   class="table-stroke ui-shadow table-stripe  ui-responsive">
+                <thead>
+                <tr>
+                    <th data-priority="9" class="derecha">#</th>
+                    <th data-priority="9" class="derecha">Item</th>
+                    <th class="izquierda">Descripción</th>
+                    <th data-priority="4" class="derecha">Cantidad</th>
+                    <th data-priority="3" class="derecha">Precio</th>
+                    <th data-priority="4" class="derecha">Subtotal</th>
+                    <th data-priority="4" class="derecha">Markup</th>
+                    <th data-priority="2" class="derecha">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for linea in cotizacion.cotizaciondetalle_set.all %}
+                    <tr>
+                        <td class="izquierda">{{ linea.id }}</td>
+                        <td class="centrado">{{ linea.item }}</td>
+                        <td data-search="{{ linea.description }}">
+                            <a class="ui-btn ui-link boton"
+                               href="{{ linea.get_absolute_url }}">{{ linea.descripcion }}</a>
+                        </td>
+                        <td class="centrado">{{ linea.cantidad }}</td>
+                        <td class="derecha">{{ linea.precio|intcomma }}</td>
+                        <td class="derecha">{{ linea.subtotal|intcomma }}</td>
+                        <td class="derecha">{{ linea.markup|intcomma }}</td>
+                        <td class="derecha">{{ linea.total|intcomma }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+{% endblock %}
+{% block footer %}
+    <a href="{{ cotizacion.get_update_url }}"
+       class="ui-btn ui-btn-c ui-btn-inline ui-shadow ui-link ui-icon-edit ui-btn-icon-left">Editar Cotización</a>
+{% endblock %}

@@ -32,6 +32,40 @@
         <td><strong>{{ itinerario.actualizado }}</strong></td>
     </tr>
 {% endblock %}
+{% block detalle %}
+    <div class="form-group">
+        <form class="form">
+            <table data-role="table" id="table-list" data-mode="columntoggle"
+                   class="table-stroke ui-shadow table-stripe  ui-responsive">
+                <thead>
+                <tr>
+                    <th data-priority="9" class="derecha">#</th>
+                    <th class="izquierda">Cotización</th>
+                    <th data-priority="1" class="centrado">Vence</th>
+                    <th data-priority="3" class="derecha">Subtotal</th>
+                    <th data-priority="4" class="derecha">Margen</th>
+                    <th data-priority="2" class="derecha">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cotizacion in itinerario.cotizacion_set.all %}
+                    <tr>
+                        <td class="izquierda">{{ cotizacion.id }}</td>
+                        <td data-search="{{ cotizacion.nombre }}">
+                            <a class="ui-btn ui-link boton"
+                               href="{{ cotizacion.get_absolute_url }}">{{ cotizacion.nombre }}</a>
+                        </td>
+                        <td class="centrado">{{ cotizacion.fecha_vence|date:"D d/b" }}</td>
+                        <td class="derecha">{{ cotizacion.subtotal|intcomma }}</td>
+                        <td class="derecha">{{ cotizacion.markup|intcomma }}</td>
+                        <td class="derecha">{{ cotizacion.total|intcomma }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+{% endblock %}
 {% block footer %}
     <a href="{{ itinerario.get_update_url }}"
        class="ui-btn ui-btn-c ui-btn-inline ui-shadow ui-link ui-icon-edit ui-btn-icon-left">Editar Itinerario</a>

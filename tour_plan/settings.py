@@ -39,12 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'debug_toolbar',
+    # 'debug_toolbar',
     'djchoices',
     'bootstrap3',
     'crispy_forms',
     'rest_framework',
-    'happenings',
+    'rest_framework.authtoken',
+    'rest_framework_docs',
+    'rest_framework_xml',
+    'rest_framework_jwt',
+    'corsheaders',
+    # 'happenings',
     'googlemaps',
     'transporte',
 ]
@@ -52,14 +57,49 @@ INSTALLED_APPS = [
 DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
 
 MIDDLEWARE_CLASSES = [
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'transporte.middleware.corsMiddleware'
+]
+
+# CORS Config
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
+CORS_REPLACE_HTTPS_REFERER = True
+CORS_ORIGIN_WHITELIST = [
+    'localhost:8000',
+    'resttesttest.com',
+]
+# CORS_ORIGIN_REGEX_WHITELIST = [
+#     'localhost:3030',
+# ]
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
 ]
 
 ROOT_URLCONF = 'tour_plan.urls'
@@ -69,8 +109,7 @@ FORMAT_MODULE_PATH = 'tour_plan.formats'
 TEMPLATES = [
     {
         'BACKEND':  'django.template.backends.django.DjangoTemplates',
-        'DIRS':     [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS':     [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS':  {
             'context_processors': [
@@ -87,6 +126,17 @@ WSGI_APPLICATION = 'tour_plan.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'tour_plan_db',
+#        'USER': 'root',
+#        'PASSWORD': 'honduras',
+#        'HOST': '127.0.0.1',
+#        'PORT': '3306',
+#    }
+# }
 
 DATABASES = {
     'default': {
@@ -148,6 +198,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 LOGIN_REDIRECT_URL = '/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-    'PAGE_SIZE':                  10
+    'DEFAULT_PERMISSION_CLASSES':     [
+        # 'rest_framework.permissions.IsAdminUser',
+        # 'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES':       [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_xml.renderers.XMLRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES':         [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework_xml.parsers.XMLParser',
+    ],
+    # 'PAGE_SIZE':                  10
 }

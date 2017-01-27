@@ -8,15 +8,16 @@ class TipoDeVehiculoSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.TipoDeVehiculo
         fields = (
-            'slug', 
-            'nombre', 
-            'creado', 
-            'actualizado', 
-            'rendimiento', 
+            'slug',
+            'nombre',
+            'rendimiento',
             'costo_por_dia', 
             'costo_por_km',
             'capacidad_nominal',
             'capacidad_real',
+            'galones_tanque',
+            'creado',
+            'actualizado',
         )
 
 
@@ -25,7 +26,8 @@ class ParametroSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Parametro
         fields = (
-            'slug', 
+            'slug',
+            'annio',
             'nombre', 
             'valor', 
             'unidad', 
@@ -131,6 +133,13 @@ class CotizacionDetalleSerializer(serializers.ModelSerializer):
 
 
 class VehiculoSerializer(serializers.ModelSerializer):
+    tipo_nombre = serializers.ReadOnlyField()
+    costo_por_dia = serializers.ReadOnlyField()
+    costo_por_km = serializers.ReadOnlyField()
+    capacidad_nominal = serializers.ReadOnlyField()
+    capacidad_real = serializers.ReadOnlyField()
+    galones_tanque = serializers.ReadOnlyField()
+
     class Meta:
         model = models.Vehiculo
         fields = (
@@ -138,9 +147,59 @@ class VehiculoSerializer(serializers.ModelSerializer):
             'nombre',
             'chofer_fijo',
             'fecha_adquirido',
+            'placa',
+            'tipo',
+            'tipo_nombre',
+            'costo_por_dia',
+            'costo_por_km',
+            'capacidad_nominal',
+            'capacidad_real',
+            'galones_tanque',
             'creado',
             'actualizado',
-            'placa',
         )
 
 
+class TramoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Tramo
+        fields = (
+            'slug',
+            'nombre',
+            'creado',
+            'actualizado',
+            'codigo',
+            'desde_hacia',
+            'kms',
+            'hrs',
+            'codigo_desde',
+            'codigo_hacia',
+        )
+
+
+class LugarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Lugar
+        fields = (
+            'slug',
+            'codigo',
+            'creado',
+            'actualizado',
+            'nombre',
+            'pais',
+        )
+
+
+class ConductorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Conductor
+        fields = (
+            'slug',
+            'nombre',
+            'creado',
+            'actualizado',
+            'identidad',
+            'telefono',
+            'empleado',
+            'incentivo_por_dia',
+        )

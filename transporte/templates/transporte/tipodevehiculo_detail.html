@@ -28,17 +28,55 @@
         <td><strong>{{ tipodevehiculo.capacidad_real }}</strong></td>
     </tr>
     <tr>
+        <td class="derecha">Rendimiento</td>
+        <td><strong>{{ tipodevehiculo.rendimiento }}</strong></td>
+    </tr>
+    <tr>
+        <td class="derecha">Gals/Tanque</td>
+        <td><strong>{{ tipodevehiculo.galones_tanque }}</strong></td>
+    </tr>
+    <tr>
         <td class="derecha">Activo?</td>
         <td><strong>{{ tipodevehiculo.activo|yesno }}</strong></td>
     </tr>
-    <tr>
-        <td class="derecha">Creado</td>
-        <td><strong>{{ tipodevehiculo.creado|date:'D d/M/Y' }}</strong></td>
-    </tr>
-    <tr>
-        <td class="derecha">Actualizado</td>
-        <td><strong>{{ tipodevehiculo.actualizado|date:'D d/M/Y' }}</strong></td>
-    </tr>
+    {#    <tr>#}
+    {#        <td class="derecha">Creado</td>#}
+    {#        <td><strong>{{ tipodevehiculo.creado|date:'D d/M/Y' }}</strong></td>#}
+    {#    </tr>#}
+    {#    <tr>#}
+    {#        <td class="derecha">Actualizado</td>#}
+    {#        <td><strong>{{ tipodevehiculo.actualizado|date:'D d/M/Y' }}</strong></td>#}
+    {#    </tr>#}
+{% endblock %}
+{% block detalle %}
+    <div class="form-group">
+        <form class="form">
+            <table data-role="table" id="table-list" data-mode="columntoggle"
+                   class="table-stroke ui-shadow table-stripe  ui-responsive">
+                <thead>
+                <tr>
+                    <th class="center">Vehículos</th>
+                    <th data-priority="1" class="derecha">Placa</th>
+                    <th data-priority="2" class="derecha">Creado</th>
+                    <th data-priority="3" class="derecha">Actualizado</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for vehiculo in tipodevehiculo.vehiculo_set.all %}
+                    <tr>
+                        <td data-search="{{ vehiculo.nombre }}">
+                            <a class="ui-btn ui-link boton"
+                               href="{{ vehiculo.get_absolute_url }}">{{ vehiculo.nombre }}</a>
+                        </td>
+                        <td class="derecha">{{ vehiculo.placa }}</td>
+                        <td class="derecha">{{ vehiculo.creado|date:"D d/b" }}</td>
+                        <td class="derecha">{{ vehiculo.actualizado|date:"D d/b" }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
 {% endblock %}
 {% block footer %}
     <a href="{{ tipodevehiculo.get_update_url }}"

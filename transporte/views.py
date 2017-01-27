@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from .forms import TipoDeVehiculoForm, ParametroForm, ItemForm, NivelDePrecioForm, CotizacionForm, ClienteForm, \
-    ItinerarioForm, CotizacionDetalleForm, VehiculoForm
+    ItinerarioForm, CotizacionDetalleForm, VehiculoForm, LugarForm, TramoForm, ConductorForm
 from .models import TipoDeVehiculo, Parametro, Item, NivelDePrecio, Cotizacion, Cliente, Itinerario, \
-    CotizacionDetalle, Vehiculo
+    CotizacionDetalle, Vehiculo, Tramo, Lugar, Conductor
 
 
 def indice(request):
@@ -185,3 +185,57 @@ class VehiculoDetailView(DetailView):
 class VehiculoUpdateView(UpdateView):
     model = Vehiculo
     form_class = VehiculoForm
+
+
+class TramoListView(ListView):
+    model = Tramo
+
+
+class TramoCreateView(CreateView):
+    model = Tramo
+    form_class = TramoForm
+
+
+class TramoDetailView(DetailView):
+    model = Tramo
+
+
+class TramoUpdateView(UpdateView):
+    model = Tramo
+    form_class = TramoForm
+
+
+class LugarListView(ListView):
+    model = Lugar
+
+
+class LugarCreateView(CreateView):
+    model = Lugar
+    form_class = LugarForm
+
+
+class LugarDetailView(DetailView):
+    model = Lugar
+
+
+class LugarUpdateView(UpdateView):
+    model = Lugar
+    form_class = LugarForm
+
+
+class ConductorListView(ListView):
+    model = Conductor
+
+
+class ConductorCreateView(CreateView):
+    model = Conductor
+    form_class = ConductorForm
+
+
+class ConductorDetailView(DetailView):
+    model = Conductor
+
+
+class ConductorUpdateView(UpdateView):
+    model = Conductor
+    form_class = ConductorForm

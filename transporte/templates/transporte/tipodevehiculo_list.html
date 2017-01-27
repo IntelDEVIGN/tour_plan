@@ -7,6 +7,7 @@
     <th data-priority="1" class="derecha">Costo/Día</th>
     <th data-priority="2" class="derecha">Costo/Km</th>
     <th data-priority="3" class="derecha">Km/Gal</th>
+    <th data-priority="4" class="derecha">Gals/Tanque</th>
 {% endblock %}
 {% block tbody %}
     {% for tipodevehiculo in tipodevehiculo_list %}
@@ -17,6 +18,7 @@
             <td class="derecha">{{ tipodevehiculo.costo_por_dia|intcomma }}</td>
             <td class="derecha">{{ tipodevehiculo.costo_por_km|intcomma }}</td>
             <td class="derecha">{{ tipodevehiculo.rendimiento }}</td>
+            <td class="derecha">{{ tipodevehiculo.galones_tanque }}</td>
         </tr>
     {% endfor %}
 {% endblock %}

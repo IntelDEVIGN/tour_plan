@@ -25,14 +25,47 @@
         <td class="derecha">Nivel de Precio</td>
         <td><strong>{{ cliente.nivel_de_precio }}</strong></td>
     </tr>
-    <tr>
-        <td class="derecha">Creado</td>
-        <td><strong>{{ cliente.creado|date:'D d/M/Y' }}</strong></td>
-    </tr>
-    <tr>
-        <td class="derecha">Actualizado</td>
-        <td><strong>{{ cliente.actualizado|date:'D d/M/Y' }}</strong></td>
-    </tr>{% endblock %}{% block footer %}
+    {#    <tr>#}
+    {#        <td class="derecha">Creado</td>#}
+    {#        <td><strong>{{ cliente.creado|date:'D d/M/Y' }}</strong></td>#}
+    {#    </tr>#}
+    {#    <tr>#}
+    {#        <td class="derecha">Actualizado</td>#}
+    {#        <td><strong>{{ cliente.actualizado|date:'D d/M/Y' }}</strong></td>#}
+    {#    </tr>#}
+{% endblock %}
+
+{% block detalle %}
+    <div class="form-group">
+        <form class="form">
+            <table data-role="table" id="table-list" data-mode="columntoggle"
+                   class="table-stroke ui-shadow table-stripe  ui-responsive">
+                <thead>
+                <tr>
+                    <th class="centrado">Itinerario</th>
+                    <th data-priority="1" class="centrado">Inicia</th>
+                    <th data-priority="2" class="centrado">Termina</th>
+                    <th data-priority="3" class="centrado">Estatus</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for itinerario in cliente.itinerario_set.all %}
+                    <tr>
+                        <td data-search="{{ itinerario.nombre }}"><a class="ui-btn ui-link boton"
+                                                                     href="{{ itinerario.get_absolute_url }}">{{ itinerario.nombre }}</a>
+                        </td>
+                        <td class="centrado">{{ itinerario.fecha_desde|date:"D d/b" }}</td>
+                        <td class="centrado">{{ itinerario.fecha_hasta|date:"D d/b" }}</td>
+                        <td class="centrado">{{ itinerario.get_estatus_display }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
     <a href="{{ cliente.get_update_url }}"
        class="ui-btn ui-btn-c ui-btn-icon-left ui-btn-inline ui-shadow ui-link ui-icon-edit">Editar
         Cliente</a>{% endblock %}
