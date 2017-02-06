@@ -8,6 +8,7 @@ class TipoDeVehiculoSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.TipoDeVehiculo
         fields = (
+            'id',
             'slug',
             'nombre',
             'rendimiento',
@@ -26,6 +27,7 @@ class ParametroSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Parametro
         fields = (
+            'id',
             'slug',
             'annio',
             'nombre', 
@@ -42,6 +44,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Item
         fields = (
+            'id',
             'slug',
             'nombre',
             'tipo_item',
@@ -60,6 +63,7 @@ class NivelDePrecioSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.NivelDePrecio
         fields = (
+            'id',
             'slug', 
             'nombre', 
             'creado', 
@@ -75,6 +79,7 @@ class CotizacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Cotizacion
         fields = (
+            'id',
             'slug', 
             'nombre', 
             'creado', 
@@ -91,6 +96,7 @@ class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Cliente
         fields = (
+            'id',
             'slug',
             'nombre',
             'email',
@@ -105,6 +111,7 @@ class ItinerarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Itinerario
         fields = (
+            'id',
             'slug', 
             'nombre', 
             'creado', 
@@ -120,6 +127,7 @@ class CotizacionDetalleSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CotizacionDetalle
         fields = (
+            'id',
             'slug',
             'descripcion',
             'creado',
@@ -143,6 +151,7 @@ class VehiculoSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Vehiculo
         fields = (
+            'id',
             'slug',
             'nombre',
             'chofer_fijo',
@@ -164,6 +173,7 @@ class TramoSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Tramo
         fields = (
+            'id',
             'slug',
             'nombre',
             'creado',
@@ -181,6 +191,7 @@ class LugarSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Lugar
         fields = (
+            'id',
             'slug',
             'codigo',
             'creado',
@@ -194,6 +205,7 @@ class ConductorSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Conductor
         fields = (
+            'id',
             'slug',
             'nombre',
             'creado',

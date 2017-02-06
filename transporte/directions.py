@@ -2,14 +2,23 @@ import googlemaps
 
 gmaps = googlemaps.Client(key='AIzaSyBbYU7-6GDjiGSWrpw5a1xKd1AUJMX5lnU')
 
-map_directions = gmaps.directions('San Pedro Sula, Honduras', 'Copan Ruinas, Honduras', language='es')
+directions = gmaps.directions('San Pedro Sula, Honduras', 'Copan Ruinas, Honduras', language='es')
+direcciones = directions[0]['legs'][0]
 
-print(map_directions[0]['legs'][0]['start_address'])
-print(map_directions[0]['legs'][0]['end_address'])
-print(map_directions[0]['legs'][0]['distance']['text'])
-print(map_directions[0]['legs'][0]['distance']['value'])
-print(map_directions[0]['legs'][0]['duration']['text'])
-print(map_directions[0]['legs'][0]['duration']['value'])
+desde = direcciones['start_address']
+hacia = direcciones['end_address']
+distancia = direcciones['distance']['text']
+distancia_v = direcciones['distance']['value']
+duracion = direcciones['duration']['text']
+duracion_v = direcciones['duration']['value']
+steps = direcciones['steps']
 
-for step in map_directions[0]['legs'][0]['steps']:
+print(desde)
+print(hacia)
+print(distancia)
+print(distancia_v)
+print(duracion)
+print(duracion_v)
+
+for step in steps:
     print(step['html_instructions'])
